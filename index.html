@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funkos MTY — Catálogo</title>
+
+<!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════
+  INSTRUCCIONES:
+  1. Ve a https://analytics.google.com → Crear propiedad
+  2. Elige "Web", ingresa tu URL de GitHub Pages
+  3. Copia el ID que empieza con G-XXXXXXXXXX
+  4. Reemplaza "G-XXXXXXXXXX" en las dos líneas de abajo
+════════════════════════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+
+  function trackFigure(name, category) {
+    gtag('event', 'ver_figura', { figura: name, categoria: category });
+  }
+  function trackWA(name, category) {
+    gtag('event', 'contacto_whatsapp', { figura: name, categoria: category });
+  }
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0e0e0e; --surface: #181818; --card: #1f1f1f;
+    --border: rgba(255,255,255,0.07); --accent: #f5c518; --accent2: #e8533a;
+    --text: #f0f0f0; --muted: #888; --radius: 14px;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(14,14,14,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;
+    height: 64px; gap: 1rem;
+  }
+  .logo { display: flex; align-items: baseline; gap: 6px; }
+  .logo-main { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; color: var(--accent); line-height: 1; }
+  .logo-sub { font-size: 11px; font-weight: 300; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
+
+  .wa-btn {
+    display: flex; align-items: center; gap: 7px; padding: 8px 16px;
+    background: #25d366; color: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; border: none; border-radius: 99px;
+    cursor: pointer; text-decoration: none; white-space: nowrap; transition: opacity 0.15s;
+  }
+  .wa-btn:hover { opacity: 0.88; }
+
+  .hero { padding: 2.5rem 1.5rem 1.5rem; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,8vw,72px); letter-spacing: 3px; line-height: 0.9; }
+  .hero-title span { color: var(--accent); }
+  .hero-meta { font-size: 13px; color: var(--muted); font-weight: 300; }
+  .hero-meta strong { color: var(--text); font-weight: 500; }
+
+  .tabs-wrapper {
+    position: sticky; top: 64px; z-index: 90;
+    background: rgba(14,14,14,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border); padding: 0 1.5rem;
+    display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .tabs-wrapper::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 14px 20px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400;
+    color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+  .tab-count { font-size: 10px; background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 99px; color: var(--muted); }
+  .tab.active .tab-count { background: rgba(245,197,24,.15); color: var(--accent); }
+
+  .section { padding: 2rem 1.5rem; display: none; }
+  .section.visible { display: block; }
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--muted);
+    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 10px;
+  }
+  .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+  @media(min-width:540px){ .grid { grid-template-columns: repeat(3,1fr); } }
+  @media(min-width:900px){ .grid { grid-template-columns: repeat(4,1fr); } }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; cursor: pointer; transition: transform .2s, border-color .2s; position: relative;
+  }
+  .card:hover { transform: translateY(-3px); border-color: rgba(245,197,24,.25); }
+  .card-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #161616; }
+  .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; display: block; }
+  .card:hover .card-img-wrap img { transform: scale(1.04); }
+  .card-body { padding: 10px 12px 12px; }
+  .card-name { font-size: 12.5px; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 4px; }
+  .card-cat { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .badge-remate {
+    position: absolute; top: 8px; left: 8px; background: var(--accent2); color: #fff;
+    font-size: 9px; font-weight: 500; letter-spacing: 1px; padding: 3px 7px; border-radius: 4px; text-transform: uppercase;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 900;
+    background: rgba(0,0,0,0.94); align-items: center; justify-content: center; padding: 1rem;
+  }
+  .lightbox.open { display: flex; }
+  .lb-inner {
+    width: 100%; max-width: 520px; background: var(--surface); border-radius: 18px;
+    border: 1px solid var(--border); overflow: hidden; animation: popIn .2s ease;
+    display: flex; flex-direction: column; max-height: 92vh;
+  }
+  @keyframes popIn { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  /* Imagen sin recorte: object-fit contain */
+  .lb-img-wrap {
+    width: 100%; background: #111;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; flex-shrink: 0; max-height: 58vh;
+  }
+  .lb-img-wrap img {
+    max-width: 100%; max-height: 58vh;
+    width: auto; height: auto; object-fit: contain; display: block;
+  }
+
+  .lb-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .lb-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 4px; }
+  .lb-cat  { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.25rem; }
+  .lb-actions { display: flex; gap: 10px; }
+  .btn-wa {
+    flex: 1; padding: 11px; background: #25d366; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    border: none; border-radius: 10px; cursor: pointer; transition: opacity .15s;
+  }
+  .btn-wa:hover { opacity: .88; }
+  .btn-close {
+    padding: 11px 16px; background: rgba(255,255,255,.06); color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+  }
+  .btn-close:hover { background: rgba(255,255,255,.1); }
+
+  /* ── MODAL NOMBRE ── */
+  .name-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.88); align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .name-modal-overlay.open { display: flex; }
+  .name-modal {
+    width: 100%; max-width: 380px; background: var(--surface); border-radius: 18px;
+    border: 1px solid rgba(245,197,24,.2); padding: 1.75rem; animation: popIn .18s ease;
+  }
+  .nm-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--accent); margin-bottom: 4px; }
+  .nm-sub   { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.5; }
+  .nm-field { margin-bottom: 1rem; }
+  .nm-field label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 6px; }
+  .nm-field input {
+    width: 100%; padding: 10px 14px; background: rgba(255,255,255,.05);
+    border: 1px solid var(--border); border-radius: 10px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color .2s;
+  }
+  .nm-field input:focus { border-color: rgba(245,197,24,.4); }
+  .nm-field input::placeholder { color: var(--muted); }
+  .nm-preview {
+    background: rgba(37,211,102,.07); border: 1px solid rgba(37,211,102,.18);
+    border-radius: 10px; padding: 10px 14px; font-size: 12px; color: rgba(37,211,102,.9);
+    line-height: 1.6; margin-bottom: 1.25rem; display: none;
+  }
+  .nm-preview.visible { display: block; }
+  .nm-actions { display: flex; gap: 10px; }
+  .nm-send {
+    flex: 1; padding: 11px; background: #25d366; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    border: none; border-radius: 10px; cursor: pointer; transition: opacity .15s;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+  }
+  .nm-send:hover { opacity: .88; }
+  .nm-send:disabled { opacity: .35; cursor: not-allowed; }
+  .nm-cancel {
+    padding: 11px 14px; background: transparent; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+  }
+  .nm-cancel:hover { background: rgba(255,255,255,.05); }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; }
+  footer p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  footer a { color: var(--accent); text-decoration: none; cursor: pointer; }
+  .all-section-group { margin-bottom: 2.5rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-main">Funkos</span>
+    <span class="logo-sub">MTY</span>
+  </div>
+  <button class="wa-btn" onclick="openNameModal('Catálogo general','General',null)">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </button>
+</header>
+
+<div class="hero">
+  <div class="hero-title">Catálogo<br><span>Funko Pop</span></div>
+  <div class="hero-meta"><strong id="total-count">—</strong> figuras disponibles<br>Monterrey, NL · Envíos y entrega local</div>
+</div>
+
+<div class="tabs-wrapper">
+  <button class="tab active" data-target="all">Todos <span class="tab-count" id="cnt-all">—</span></button>
+  <button class="tab" data-target="marvel">Marvel <span class="tab-count" id="cnt-marvel">—</span></button>
+  <button class="tab" data-target="dbz">Dragon Ball <span class="tab-count" id="cnt-dbz">—</span></button>
+  <button class="tab" data-target="onepiece">One Piece <span class="tab-count" id="cnt-onepiece">—</span></button>
+  <button class="tab" data-target="starwars">Star Wars <span class="tab-count" id="cnt-starwars">—</span></button>
+  <button class="tab" data-target="yugioh">Yugi-Oh / Digimon <span class="tab-count" id="cnt-yugioh">—</span></button>
+  <button class="tab" data-target="remates">Remates <span class="tab-count" id="cnt-remates">—</span></button>
+  <button class="tab" data-target="otros">Sin categoría <span class="tab-count" id="cnt-otros">—</span></button>
+</div>
+
+<div id="sec-all"      class="section visible"></div>
+<div id="sec-marvel"   class="section"></div>
+<div id="sec-dbz"      class="section"></div>
+<div id="sec-onepiece" class="section"></div>
+<div id="sec-starwars" class="section"></div>
+<div id="sec-yugioh"   class="section"></div>
+<div id="sec-remates"  class="section"></div>
+<div id="sec-otros"    class="section"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lb-inner">
+    <div class="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+    <div class="lb-body">
+      <div class="lb-name" id="lb-name"></div>
+      <div class="lb-cat"  id="lb-cat"></div>
+      <div class="lb-actions">
+        <button class="btn-wa" onclick="handleLbWA()">Preguntar por WhatsApp</button>
+        <button class="btn-close" onclick="closeLightbox()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOMBRE -->
+<div class="name-modal-overlay" id="nameModal" onclick="if(event.target===this)closeNameModal()">
+  <div class="name-modal">
+    <div class="nm-title">¡Un momento!</div>
+    <div class="nm-sub">Ingresa tu nombre para que el vendedor sepa quién escribe.</div>
+    <div class="nm-field">
+      <label>Nombre y apellido</label>
+      <input type="text" id="nm-input" placeholder="Ej: Juan García" autocomplete="name" oninput="updatePreview()">
+    </div>
+    <div class="nm-preview" id="nm-preview"></div>
+    <div class="nm-actions">
+      <button class="nm-send" id="nm-send" onclick="sendWA()" disabled>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Abrir WhatsApp
+      </button>
+      <button class="nm-cancel" onclick="closeNameModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>¿Ves algo que te interesa? Escríbeme directamente.<br>
+  <a onclick="openNameModal('Catálogo general','General',null)">WhatsApp</a>
+  · Monterrey, NL · Entregas locales y envíos</p>
+</footer>
+
+<script>
+// ══════════════════════════════════
+//  CONFIGURA AQUÍ TU NÚMERO
+const WA_NUMBER = '521TUNUMERO'; // ej: 5218112345678
+// ══════════════════════════════════
+
+function driveThumb(id)  { return `https://drive.google.com/thumbnail?id=${id}&sz=w400`; }
+function driveFull(id)   { return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`; }
+
+let lbCurrent = {};
+let nmCurrent = {};
+
+const catalog = {
+  marvel:   { label:'Marvel', items:[
+    {id:'1V73tf-1MnSLgZ6G-vjIdLfh7JPItZslQ',name:'Marv #1'},
+    {id:'1sL4wwpJx_PQKghri5oH9mOvqXv4xoemm',name:'Marv #2'},
+    {id:'1i2cr5VpnvGayMtV-iT1j4emgRajCQw7z',name:'Marv #3'},
+    {id:'13EKnG-f-uic6OG331B7B2AD_S-BT3gXb',name:'Marv #4'},
+    {id:'1xkeHZVW8sWgGBE0fAX-35g0UDp5NLbzZ',name:'Marv #5'},
+    {id:'1hl6iwkyq3dsJrJg8kIsLyDiokhWewEbR',name:'Marv #6'},
+    {id:'1u6ibvDlxDh4_feJRxQADN62k4WESJDy4',name:'Marv #7'},
+    {id:'1-iNZspiezD6K_P0wDlXlBGDfWdZV7xCJ',name:'Marv #8'},
+    {id:'14-mm3ukzx529LjNT2_BHnaQfSrJSLgVu',name:'Marv #9'},
+    {id:'1gUjpbjcY42mMPAZo2LlfFqGKCLV2DkbA',name:'Marv #10'},
+    {id:'1jSTZzcWUsAagfzFlLEFVJYbcEfv6cw77',name:'Marv #12'},
+    {id:'1gUqHLadNtzg0jU9n5KuEsDfl57RwpEfY',name:'Marv #13'},
+    {id:'1No3vKNjm5f7lWO76YdQxta5wK0UZD4KG',name:'Marv #14'},
+    {id:'1Jj9sr20JKjE_eqlY_nDJZuJAa_q8Lp5v',name:'Marv #15'},
+    {id:'1HYL3Zlu5yWQbwlwSkdM-W7cNwl1-YImC',name:'Marv #16'},
+    {id:'1Ot-yKXEd86QmjjIb0NdWupxJahsPDp4L',name:'Marv #17'},
+    {id:'10aNN5HZ0uTa_dcyQvw91UKj5jUJnn9lP',name:'Marv #18'},
+    {id:'1bYTrIH_lnfCDLHbS2asqxysxZoPisXzX',name:'Marv #19'},
+    {id:'1SxwJlA7-TFn06e1rKd_msAKyQZ2Zsghd',name:'Marv #20'},
+    {id:'1QnYY3N1bFCwlXv48juBXZpuN_UJiQ4Yz',name:'Marv #21'},
+    {id:'1Tjsl1xc8iPQL3d63yDNg5g8zeEfFWbXZ',name:'Marv #22'},
+    {id:'1MGCv3Rn4xw5I2TsN2VjAe9VQ6PaYwSeA',name:'Marv #23'},
+    {id:'1zORGEMsKUhr1l-eyiVz-GKoTWqNLLXj-',name:'Marv #24'},
+    {id:'1xXdQHXCF2JL9v8our2nAkKGbhCqIiovA',name:'Marv #25'},
+    {id:'1giHBCGMLRTs_q6IF7HXGOeFfN646awR4',name:'Casco Marvel'},
+  ]},
+  dbz: { label:'Dragon Ball', items:[
+    {id:'1tYthP88r-KqM_3Bz9JENqD3jDeFsmG1x',name:'DBZ #1'},
+    {id:'1SpWPR9EhpISXL0Q-u_LRVttAHCdTIcIR',name:'DBZ #2'},
+    {id:'1mMAYfMD1ffGKszLFCIM9aoXLISgsHBlp',name:'DBZ #3'},
+    {id:'135NlaQW268B-4p3R-GrR2M-tigttBioi',name:'DBZ #4'},
+    {id:'13Rm9OjQXga7DjXaKs79DsblH-UbXx2I5',name:'DBZ #5'},
+    {id:'1z8U_SQ_3JIp3BJC1-3nbpbUARwBr8cBJ',name:'DBZ #7'},
+    {id:'1h64RpsMRgiZhD1Nf8EI6uEEVJObnHY4Z',name:'DBZ #8'},
+  ]},
+  onepiece: { label:'One Piece', items:[
+    {id:'1OJcEF8voMpiBfjwQVh9t98HH_fyJ_1Dh',name:'OP #1'},
+    {id:'13BzcIQ5T92e-6HNlTzxLNfTerbQt5qXU',name:'OP #2'},
+    {id:'1xANwjDt6sZ2F9MM8EzoO3BXzVdhJKpNY',name:'OP #3'},
+    {id:'1e8PBFRhSr2TfBDt-qW_Yj3g8bkJ10kMj',name:'OP #4'},
+    {id:'1lAHh9PZPnm2R6C_EZOwOCg5cSaLFn-rI',name:'OP #5'},
+    {id:'1xJnmQCM_426N-0fyyPef-xiOQgZ2finD',name:'OP #6'},
+    {id:'1mMMulcmuflBQvbVa4pIn5-bdZhY5AyXO',name:'OP #7'},
+    {id:'1ruiwWENRmjIcZ6dvocISbbctMvWKu0JP',name:'OP #8'},
+    {id:'1j1NO0pFrjDI4BF9cXnLOeXvy6hvjBRvu',name:'OP #9'},
+    {id:'1pFurmc8S__ISUC3ZuK4QJfcRyR7uEkqx',name:'OP #10'},
+    {id:'1-v6YkZeNBGiIgmMGGETz66YA4FOgvo6p',name:'OP #11'},
+    {id:'1k_LqAWk8cjvtVuhdSAYxXszcY0Km3Cr7',name:'OP #12'},
+    {id:'1Fn8U2IKoGJG5qRptJW-Ft2ShXg-G0d0p',name:'OP #13'},
+    {id:'1s4KLN9NWPwmjikuQoZ7VOLb2MAPz2oYZ',name:'OP #14'},
+    {id:'1qXHqq1ZDWbykQx4Ie-tnHi7Eb4sAkAuo',name:'OP #15'},
+  ]},
+  starwars: { label:'Star Wars', items:[
+    {id:'15o9W0l7rcvZqzv9Sf4PE-xV8ve1DF_a-',name:'SW #101'},
+    {id:'1He1fheEPKu7db_-rCyVXTZQiSA7Q5dHM',name:'SW #102'},
+    {id:'1nPPMcO5kWnlr6eY5Q4bYcbr8g0tHDj9S',name:'SW #103'},
+    {id:'1dxZLXG0ItkKHMVFuM6iR7LT15VgZRdrF',name:'SW #104'},
+    {id:'1pGZqI01T9NyYtIyRwhRLbreR6dSPXOSQ',name:'SW #105'},
+    {id:'1aJLXGEB1z56R6H6WQ-jpkBx081Ssf7YV',name:'SW #106'},
+    {id:'1iBvPxZvhsA0PX3vox2pAmzmK5jlKNEoR',name:'SW #107'},
+    {id:'1qTkiVz9XnhNd9tqlwiqV1JzXLTt7maEr',name:'SW especial'},
+  ]},
+  yugioh: { label:'Yugi-Oh / Digimon', items:[
+    {id:'1DMU8q7tMfqHzX_xhDOTcSm87-aTXwms7',name:'Yugi #1'},
+    {id:'1quao9mOtwhYxnF7bfdPaSLiWB3n7jkAK',name:'Yugi #2'},
+    {id:'1SEufXqN2kgFP3ZXdw47ubr_k1UW_Aow9',name:'Yugi #3'},
+    {id:'1A-H0Ry7FIWzwptQ9lyGG-YPeAfD9Dr4r',name:'Yugi #4'},
+    {id:'18N4XgyrdUVdhv0HvGknUziAQihLz6XsU',name:'Digimon #1'},
+  ]},
+  remates: { label:'Remates', items:[
+    {id:'16MEhS_cs1peGXMd2not4DebuVBV38otz',name:'Remate #1',remate:true},
+    {id:'118HfGbAaW4vD8lOpOQvf1B3aJzl2WWgj',name:'Remate #2',remate:true},
+  ]},
+  otros: { label:'Sin categoría', items:[
+    {id:'1QZa7dlQef9rzfNyx_Sd5ZKst_3QkguM5',name:'Figura #1'},
+    {id:'1SAiGZ3qQHalcUteFpVkq9ecVjGkkszHk',name:'Figura #2'},
+    {id:'1SB_oGvC4jMyupCbSyC-VmaVAV8bPFp8V',name:'Figura #3'},
+    {id:'1GC0U4BeXhXT3kv4c2e6YfdGQFjgM8bqW',name:'Figura #4'},
+    {id:'13LxcQgwBjVH5nk8DJhVq9QmQbKntS6JI',name:'Figura #5'},
+    {id:'1_lFCFVvD7DSSb9gdR-Hlaw1iup2EUKTv',name:'Figura #6'},
+    {id:'1_hQCdikMQw9BrZ3hXChC_wzMuZiDluu4',name:'Figura #7'},
+    {id:'171an8OzfZwwqm1Y3uRvxN_t5wFthsDon',name:'Figura #8'},
+    {id:'1jhR_6zYAXSa_fKtwlniUyRW_yHvqo4ER',name:'Figura #9'},
+    {id:'1t6Q5xIKVAfFwQPV6ljJrNU4w-FUZqDyJ',name:'Figura #10'},
+    {id:'1Wv0GaWO7I1CoJw712G3apw8wVOgyLhLk',name:'Figura #11'},
+    {id:'1hNJLHxq2PBuSLb0tNOMAhUt2k-4z_59L',name:'Figura #12'},
+    {id:'1iUQ8J965P2eGWRynyZohCHLqtr3Yl9JX',name:'Figura #13'},
+    {id:'1hLtsa1pykSCodaz6n1Vj5LEQnZWkD2zj',name:'Figura #14'},
+    {id:'1AqaxAKtJqQ1LHpbtj3TjC2IQaM587LjG',name:'Figura #15'},
+    {id:'1zQ_V320oBMWNWs8XsZ2HvzqzIyMbz4cq',name:'Figura #16'},
+    {id:'1cwmFP04RYbr6YDS4ty2hgX6kh8NV5lzF',name:'Figura #17'},
+    {id:'1Fv_8hE_7AgDMWwtxZjtdUTlKeYF24ShE',name:'Figura #18'},
+    {id:'1vYo3FA2wEUJl_vC5oKN3LD9V1eYMQ9oz',name:'Figura #19'},
+    {id:'1VFC3Dm7Ps1S1rQmp_rVujtkK3x485doD',name:'Figura #20'},
+    {id:'1rgNNtJXDObW90EAGIuBYSeIQpd4qF1x-',name:'Figura #21'},
+    {id:'1jCu_1VNffJZcb49XNzIqCwWD1ZON0BPW',name:'Figura #22'},
+    {id:'1Kg9GKax03hzyLXczQ1FXedzzUgBvuGdK',name:'Figura #23'},
+    {id:'1qvdxtIzahYBXJHw71Wet_7AXA8eE_J5_',name:'Figura #24'},
+    {id:'1YaOJXgga5RtJghXQ6-LSiNUu9su2GAJh',name:'Figura #25'},
+    {id:'146y5Y4u5OFWpzJnXSKZS9yyNiMzR_7Ia',name:'Figura #26'},
+    {id:'1U2Ue5O_5JsDiK-lZDL3Vb7LhGMdQeZcz',name:'Figura #27'},
+    {id:'1BGY2i89oO8YZEXBOh0HI2n9r0ybELaMH',name:'Figura #28'},
+    {id:'1vstSWnb9KhOPfHQ7Rp_shPy0pDjO_XcT',name:'Figura #29'},
+    {id:'1jrHRLxgwFy43JYPSufJwy1q_fAK9Udpj',name:'Figura #30'},
+    {id:'17c9c1I30OnhK0Q0DZw6trzaDLo7N0ltF',name:'Figura #31'},
+    {id:'1jP_YW6lKL5Zue9fZ20GBAKxRVQ0lrlJ_',name:'Figura #32'},
+    {id:'1b_Jf0GnDNpRQgTZa0gdLJSxD55BCx-6K',name:'Figura #33'},
+    {id:'1QjTmyA4HX4heK_YaQRo6tRPaqMuyRSfg',name:'Figura #34'},
+    {id:'1E5FAjbKq2Muxp3pWjyRimgkdtyxGvc48',name:'Figura #35'},
+    {id:'1MIVaZqikvDdBoCFyeQnsWvfLCBcYW317',name:'Figura #36'},
+    {id:'1pyKzIUnJQ1cWQLimYo8XSyFCSmjGxHjQ',name:'Figura #37'},
+    {id:'1OZZVFVpCFAWFxLenItsf2ir4V2vmeUO9',name:'Figura #38'},
+    {id:'1rbiZ4sPeS-XXfbP8NF1vehqPPgXAycDM',name:'Figura #39'},
+    {id:'1I94SbAmXrQTfotRw0U6u_20nE6w9b0tX',name:'Figura #40'},
+  ]}
+};
+
+// ── RENDER ────────────────────────────────────
+function makeCard(item, catKey) {
+  const cat = catalog[catKey].label;
+  const n = item.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  const c = cat.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  return `<div class="card" onclick="openLightbox('${item.id}','${n}','${c}')">
+    ${item.remate?'<span class="badge-remate">Remate</span>':''}
+    <div class="card-img-wrap"><img src="${driveThumb(item.id)}" alt="${item.name}" loading="lazy"></div>
+    <div class="card-body"><div class="card-name">${item.name}</div><div class="card-cat">${cat}</div></div>
+  </div>`;
+}
+
+function buildSections() {
+  let total = 0, allHtml = '';
+  for (const [key, cat] of Object.entries(catalog)) {
+    total += cat.items.length;
+    document.getElementById(`cnt-${key}`).textContent = cat.items.length;
+    const cards = cat.items.map(i=>makeCard(i,key)).join('');
+    document.getElementById(`sec-${key}`).innerHTML = `<div class="grid">${cards}</div>`;
+    allHtml += `<div class="all-section-group"><div class="section-heading">${cat.label}</div><div class="grid">${cards}</div></div>`;
+  }
+  document.getElementById('sec-all').innerHTML = allHtml;
+  document.getElementById('cnt-all').textContent = total;
+  document.getElementById('total-count').textContent = total;
+}
+
+// ── TABS ──────────────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+    tab.classList.add('active');
+    document.getElementById('sec-'+tab.dataset.target).classList.add('visible');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(typeof gtag!=='undefined') gtag('event','ver_categoria',{categoria:tab.dataset.target});
+  });
+});
+
+// ── LIGHTBOX ──────────────────────────────────
+function openLightbox(imgId, name, cat) {
+  lbCurrent = {imgId, name, cat};
+  document.getElementById('lb-img').src = driveFull(imgId);
+  document.getElementById('lb-name').textContent = name;
+  document.getElementById('lb-cat').textContent  = cat;
+  document.getElementById('lightbox').classList.add('open');
+  if(typeof trackFigure!=='undefined') trackFigure(name, cat);
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+function handleLbWA() { openNameModal(lbCurrent.name, lbCurrent.cat, driveFull(lbCurrent.imgId)); }
+
+// ── MODAL NOMBRE ──────────────────────────────
+function openNameModal(figName, catName, imgUrl) {
+  nmCurrent = {figName, catName, imgUrl};
+  document.getElementById('nm-input').value = '';
+  document.getElementById('nm-preview').classList.remove('visible');
+  document.getElementById('nm-send').disabled = true;
+  document.getElementById('nameModal').classList.add('open');
+  setTimeout(()=>document.getElementById('nm-input').focus(), 150);
+}
+function closeNameModal() { document.getElementById('nameModal').classList.remove('open'); }
+
+function updatePreview() {
+  const nombre = document.getElementById('nm-input').value.trim();
+  const btn = document.getElementById('nm-send');
+  const prev = document.getElementById('nm-preview');
+  if (nombre.length < 2) { btn.disabled=true; prev.classList.remove('visible'); return; }
+  btn.disabled = false;
+  prev.textContent = '📩 ' + buildMsg(nombre);
+  prev.classList.add('visible');
+}
+
+function buildMsg(nombre) {
+  const {figName, catName} = nmCurrent;
+  if (catName === 'General')
+    return `Hola, soy ${nombre} y estoy interesado en tu catálogo de Funkos. ¿Me puedes dar más información?`;
+  return `Hola, soy ${nombre} y estoy interesado en la figura: ${figName} (${catName}). ¿Está disponible?`;
+}
+
+function sendWA() {
+  const nombre = document.getElementById('nm-input').value.trim();
+  if (!nombre) return;
+  if(typeof trackWA!=='undefined') trackWA(nmCurrent.figName, nmCurrent.catName);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMsg(nombre))}`, '_blank');
+  closeNameModal();
+}
+
+document.getElementById('nm-input').addEventListener('keydown', e => {
+  if (e.key==='Enter' && !document.getElementById('nm-send').disabled) sendWA();
+});
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') { closeLightbox(); closeNameModal(); }
+});
+
+buildSections();
+</script>
+</body>
+</html>
