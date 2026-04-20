@@ -450,233 +450,47 @@ function driveLink(id){ return `https://drive.google.com/file/d/${id}/view`; }
 let lbCurrent={}, nmCurrent={};
 
 // ══════════════════════════════════════════════════════
-//  CATÁLOGO COMPLETO
+//  CONFIGURACIÓN DRIVE API
+//  ► Reemplaza AQUI_TU_API_KEY con tu Google API Key
+//  ► Pasos: console.cloud.google.com → Credenciales → Clave de API
+//           Restringir a: Google Drive API + tu dominio
 // ══════════════════════════════════════════════════════
-const catalog = [
-  {key:'marvel', label:'Marvel', group:'Anime / Cómics', items:[
-    {id:'1V73tf-1MnSLgZ6G-vjIdLfh7JPItZslQ',name:'Marv #1'},
-    {id:'1sL4wwpJx_PQKghri5oH9mOvqXv4xoemm',name:'Marv #2'},
-    {id:'1i2cr5VpnvGayMtV-iT1j4emgRajCQw7z',name:'Marv #3'},
-    {id:'13EKnG-f-uic6OG331B7B2AD_S-BT3gXb',name:'Marv #4'},
-    {id:'1xkeHZVW8sWgGBE0fAX-35g0UDp5NLbzZ',name:'Marv #5'},
-    {id:'1hl6iwkyq3dsJrJg8kIsLyDiokhWewEbR',name:'Marv #6'},
-    {id:'1u6ibvDlxDh4_feJRxQADN62k4WESJDy4',name:'Marv #7'},
-    {id:'1-iNZspiezD6K_P0wDlXlBGDfWdZV7xCJ',name:'Marv #8'},
-    {id:'14-mm3ukzx529LjNT2_BHnaQfSrJSLgVu',name:'Marv #9'},
-    {id:'1gUjpbjcY42mMPAZo2LlfFqGKCLV2DkbA',name:'Marv #10'},
-    {id:'1jSTZzcWUsAagfzFlLEFVJYbcEfv6cw77',name:'Marv #12'},
-    {id:'1gUqHLadNtzg0jU9n5KuEsDfl57RwpEfY',name:'Marv #13'},
-    {id:'1No3vKNjm5f7lWO76YdQxta5wK0UZD4KG',name:'Marv #14'},
-    {id:'1Jj9sr20JKjE_eqlY_nDJZuJAa_q8Lp5v',name:'Marv #15'},
-    {id:'1HYL3Zlu5yWQbwlwSkdM-W7cNwl1-YImC',name:'Marv #16'},
-    {id:'1Ot-yKXEd86QmjjIb0NdWupxJahsPDp4L',name:'Marv #17'},
-    {id:'10aNN5HZ0uTa_dcyQvw91UKj5jUJnn9lP',name:'Marv #18'},
-    {id:'1bYTrIH_lnfCDLHbS2asqxysxZoPisXzX',name:'Marv #19'},
-    {id:'1SxwJlA7-TFn06e1rKd_msAKyQZ2Zsghd',name:'Marv #20'},
-    {id:'1QnYY3N1bFCwlXv48juBXZpuN_UJiQ4Yz',name:'Marv #21'},
-    {id:'1Tjsl1xc8iPQL3d63yDNg5g8zeEfFWbXZ',name:'Marv #22'},
-    {id:'1MGCv3Rn4xw5I2TsN2VjAe9VQ6PaYwSeA',name:'Marv #23'},
-    {id:'1zORGEMsKUhr1l-eyiVz-GKoTWqNLLXj-',name:'Marv #24'},
-    {id:'1xXdQHXCF2JL9v8our2nAkKGbhCqIiovA',name:'Marv #25'},
-    {id:'1giHBCGMLRTs_q6IF7HXGOeFfN646awR4',name:'Casco Marvel'},
-  ]},
-  {key:'dc', label:'DC Comics', group:'Anime / Cómics', items:[
-    {id:'1XeoVfRZ7_IB2dzZzVO5JcqDkj3pDhTNe',name:'DC #1'},
-    {id:'17lZET5geWszKA2Ek9ifq2iBDmPczy9gk',name:'DC #2'},
-    {id:'1qX-JneUjZX6zoGkGFCsnUvdOJQY1-9O1',name:'DC #3'},
-    {id:'1Vg2irU9XDueZctzI85EnX_yM1KC3txGe',name:'DC #4'},
-    {id:'1sdqNi8uixjbyPFHLcBrk2yBjEVzXUcY3',name:'DC #5'},
-  ]},
-  {key:'dbz', label:'Dragon Ball', group:'Anime / Cómics', items:[
-    {id:'1tYthP88r-KqM_3Bz9JENqD3jDeFsmG1x',name:'DBZ #1'},
-    {id:'1SpWPR9EhpISXL0Q-u_LRVttAHCdTIcIR',name:'DBZ #2'},
-    {id:'1mMAYfMD1ffGKszLFCIM9aoXLISgsHBlp',name:'DBZ #3'},
-    {id:'135NlaQW268B-4p3R-GrR2M-tigttBioi',name:'DBZ #4'},
-    {id:'13Rm9OjQXga7DjXaKs79DsblH-UbXx2I5',name:'DBZ #5'},
-    {id:'1z8U_SQ_3JIp3BJC1-3nbpbUARwBr8cBJ',name:'DBZ #7'},
-    {id:'1h64RpsMRgiZhD1Nf8EI6uEEVJObnHY4Z',name:'DBZ #8'},
-  ]},
-  {key:'onepiece', label:'One Piece', group:'Anime / Cómics', items:[
-    {id:'1OJcEF8voMpiBfjwQVh9t98HH_fyJ_1Dh',name:'OP #1'},
-    {id:'13BzcIQ5T92e-6HNlTzxLNfTerbQt5qXU',name:'OP #2'},
-    {id:'1xANwjDt6sZ2F9MM8EzoO3BXzVdhJKpNY',name:'OP #3'},
-    {id:'1e8PBFRhSr2TfBDt-qW_Yj3g8bkJ10kMj',name:'OP #4'},
-    {id:'1lAHh9PZPnm2R6C_EZOwOCg5cSaLFn-rI',name:'OP #5'},
-    {id:'1xJnmQCM_426N-0fyyPef-xiOQgZ2finD',name:'OP #6'},
-    {id:'1mMMulcmuflBQvbVa4pIn5-bdZhY5AyXO',name:'OP #7'},
-    {id:'1ruiwWENRmjIcZ6dvocISbbctMvWKu0JP',name:'OP #8'},
-    {id:'1j1NO0pFrjDI4BF9cXnLOeXvy6hvjBRvu',name:'OP #9'},
-    {id:'1pFurmc8S__ISUC3ZuK4QJfcRyR7uEkqx',name:'OP #10'},
-    {id:'1-v6YkZeNBGiIgmMGGETz66YA4FOgvo6p',name:'OP #11'},
-    {id:'1k_LqAWk8cjvtVuhdSAYxXszcY0Km3Cr7',name:'OP #12'},
-    {id:'1Fn8U2IKoGJG5qRptJW-Ft2ShXg-G0d0p',name:'OP #13'},
-    {id:'1s4KLN9NWPwmjikuQoZ7VOLb2MAPz2oYZ',name:'OP #14'},
-    {id:'1qXHqq1ZDWbykQx4Ie-tnHi7Eb4sAkAuo',name:'OP #15'},
-  ]},
-  {key:'naruto', label:'Naruto / Boruto', group:'Anime / Cómics', items:[
-    {id:'1SR3BYfbm6QMT3HoC8ySCvkYashzDJiQl',name:'Nar #1'},
-    {id:'1CPxmNiav127L6rop31l5t3eeCQfSvxE-',name:'Nar #2'},
-    {id:'1qMMlM67YPvIbzjhUKSu6poBOKKbh3jPP',name:'Nar #3'},
-    {id:'1QRKKDmUtmlPwaHYjrU4NKzC6triIUObv',name:'Nar #4'},
-    {id:'1SnzXpel-7ByCmQHqYWDldkEF5ULDF-En',name:'Nar #5'},
-    {id:'1xfbMfs4omHu6cHzq80-XhraE7qFOgy8j',name:'Nar especial #1'},
-    {id:'1BX-7gF-sh5s-KsF1-ynye3R_aDpzsp4m',name:'Nar especial #2'},
-    {id:'1lLw5JEP4rCOlGCMckCeMyA03fgqGPdsd',name:'Nar especial #3'},
-  ]},
-  {key:'aot', label:'Attack on Titan', group:'Anime / Cómics', items:[
-    {id:'1X6p6-0bQg0CkuZGd75E64yDZplBs5RBy',name:'AOT #1'},
-    {id:'1kRqBw2ekVNXyToBg6scQ-rTbC8TeYlbq',name:'AOT #2'},
-    {id:'1XP7bRYoi2Plu-lV5VLTqF977m72JBOw1',name:'AOT #3'},
-    {id:'1UY1yaQ-oxFve5ribmwpZ8U3Duyunt9Pv',name:'AOT #4'},
-    {id:'1n693VzMh_uA9vydQbJxu6Fke7kqoyIP6',name:'AOT #5'},
-  ]},
-  {key:'demonslayer', label:'Demon Slayer', group:'Anime / Cómics', items:[
-    {id:'1TiUFN0DoU3cxgVSDF1y8RlC52STMTv1Q',name:'DS #1'},
-    {id:'1rRBovHOEWHSIf_XgFoKgCxmms7Bp7sdK',name:'DS #2'},
-    {id:'15jcV7xU45XEVNY6K4GWzcZb6IOG8fXJ_',name:'DS #3'},
-    {id:'13ryi7QJFyuaHHDKvfdv9IigJqHJ1SJiv',name:'DS #4'},
-  ]},
-  {key:'mha', label:'My Hero Academia', group:'Anime / Cómics', items:[
-    {id:'1xB1VFC_i8_5ZJ_q814vqPrijWLDPCsKt',name:'MHA #1'},
-    {id:'1VnVHVVaEh-fd0AyD60xxHjK8ZO0pQ3Jv',name:'MHA #2'},
-    {id:'12tbHmgfAHpD8nk3-5UnfpD7gDg88qDnl',name:'MHA #3'},
-    {id:'1FJOQC_rdgjrrqG8y9-mVflPsFDX6RuWp',name:'MHA #4'},
-  ]},
-  {key:'yugioh', label:'Yugi-Oh / Digimon', group:'Anime / Cómics', items:[
-    {id:'1DMU8q7tMfqHzX_xhDOTcSm87-aTXwms7',name:'Yugi #1'},
-    {id:'1quao9mOtwhYxnF7bfdPaSLiWB3n7jkAK',name:'Yugi #2'},
-    {id:'1SEufXqN2kgFP3ZXdw47ubr_k1UW_Aow9',name:'Yugi #3'},
-    {id:'1A-H0Ry7FIWzwptQ9lyGG-YPeAfD9Dr4r',name:'Yugi #4'},
-    {id:'18N4XgyrdUVdhv0HvGknUziAQihLz6XsU',name:'Digimon #1'},
-  ]},
-  {key:'starwars', label:'Star Wars', group:'Películas / TV', items:[
-    // ID actualizado al más reciente (creado hoy 19-abr-2026)
-    {id:'1P2hNRFJ_4BMcGErE4yffcJEwbyL6Ly0r',name:'SW #101'},
-    {id:'1He1fheEPKu7db_-rCyVXTZQiSA7Q5dHM',name:'SW #102'},
-    {id:'1nPPMcO5kWnlr6eY5Q4bYcbr8g0tHDj9S',name:'SW #103'},
-    {id:'1dxZLXG0ItkKHMVFuM6iR7LT15VgZRdrF',name:'SW #104'},
-    {id:'1pGZqI01T9NyYtIyRwhRLbreR6dSPXOSQ',name:'SW #105'},
-    // 106 actualizado
-    {id:'1_g--GFy2MGEoudlX4Je2CTQjhEE8YTBG',name:'SW #106'},
-    {id:'1iBvPxZvhsA0PX3vox2pAmzmK5jlKNEoR',name:'SW #107'},
-    {id:'1qTkiVz9XnhNd9tqlwiqV1JzXLTt7maEr',name:'SW especial'},
-  ]},
-  {key:'disney', label:'Disney', group:'Películas / TV', items:[
-    {id:'1aALEQjPecICBL9NWg8QUlyo2lMbhfsQf',name:'Disney #1'},
-    {id:'1wt80AibDwqLsGWKuSDR5YB3gKfwxFVHw',name:'Disney #2'},
-  ]},
-  {key:'pokemon', label:'Pokémon', group:'Películas / TV', items:[
-    {id:'1NgyNCIt2wXttazn_fYV71nFbM-bZbrB4',name:'POK #1'},
-    {id:'10nSHhOlQ3b8a_T5k-PwPJ60sh4niWhLs',name:'POK #2'},
-    {id:'1O8qENM958ps93j6aLBvDKKjr1-gP_EN_',name:'POK #3'},
-  ]},
-  {key:'cascos', label:'Cascos', group:'Accesorios', items:[
-    {id:'1VWT5gNBWRc1LNFCHyASaC2hVTTfD0h7r',name:'Casco #1'},
-    {id:'1rjHuDz33QQ8vPzf2xfSZewf8WT41lFBt',name:'Casco #2'},
-    {id:'1zasrfrFoE8u7nD3y0DVuBn558Zum_z4A',name:'Casco #3'},
-    {id:'1yhhu7qUUuiFjYscp4kZYGbVsBfvek9hV',name:'Casco #4'},
-  ]},
-  {key:'cajas', label:'Cajas Funko', group:'Accesorios', items:[
-    {id:'1sztBNj8WcoDeg4uEjM2GxL0zsIAPrmgh',name:'Caja #1'},
-    {id:'1JnAfDHG4lXP4RetK7aH_DTet7vzuqBtW',name:'Caja #2'},
-    {id:'1lcweuGuXYZd9wxyayrizar7cBOZ0yYe6',name:'Caja #3'},
-    {id:'1v9Mo9RevcRfHAl0clKBGG-ja1MvVOmfM',name:'Caja #4'},
-    {id:'1Axdyjiwb7LZWpaQ0g-1QZxSnmLHNPoBf',name:'Caja #5'},
-    {id:'1EuxUqXjeosF3kwPEsSRGK9SdMFnnkM-e',name:'Caja #6'},
-    {id:'1v3E8wdmxdurDHd1n3mrlcylg2zwLAhAV',name:'Caja #7'},
-    {id:'1VJbZFtRpxO-6got8Xc2KhuCxd9L_ayk4',name:'Caja #8'},
-    {id:'1NjiArAKZTnftcGw9JA6M46C63y4JpIX-',name:'Caja #9'},
-    {id:'17Q9hC-dU12PVL4odCj6I1ZzbefFPxMEn',name:'Caja #10'},
-    {id:'1ZUsTjwkklJMZ1wRwfhGs03OyJc6fYZ8L',name:'Caja #11'},
-    {id:'1N1N0gaN-9CAniObFF6uzT73KdJYhx88A',name:'Caja #12'},
-    {id:'1Q8ZcEkNOfs8i44eR9eA8QUselkL3Rnjx',name:'Caja #13'},
-    {id:'1D6CWwY6znktvJ6uLzoGWNfCTgzBl8vpI',name:'Caja #14'},
-    {id:'1nXNhXPwlffcyS7swCXKduMy_UKCBLE2v',name:'Caja #15'},
-    {id:'1ycPjvNux9Io1Cb2GNEAyt1HSbk0ik_DJ',name:'Caja #16'},
-    {id:'1D6KM4bTwjHmUz7t2XJbvZlNMWCqP_eXY',name:'Caja #17'},
-    {id:'1FPYYc5aKAJktEqEP8k2aXJoOAR--jIps',name:'Caja #18'},
-    {id:'1SNGLn-FLADekqZhOSRO3l5lCZPEXQOLO',name:'Caja #19'},
-    {id:'1ADRPw7ykVhJej9ZLaAgVwJWqIohZ5VKE',name:'Caja #20'},
-    {id:'14_gF6UBWoWsCcp71alEAA0tpDNHSCsGn',name:'Caja #21'},
-    {id:'1sFgj_lid5AOsi6O8fUnFpVvntCIsYjP2',name:'Caja #22'},
-    {id:'1j89uiPA98CRXSK0TcnXbsAG3dxqdY7gu',name:'Caja #23'},
-    {id:'1b9cuCFpoeElFmVUu5EjK_ornzDw25nrL',name:'Caja #24'},
-    {id:'1uVoCADjkqEoLxM2f2P-rONOBJhKrsZWT',name:'Caja #25'},
-    {id:'1IZuxJvTCoZDVaqkBAL6cZl_920TxDsJp',name:'Caja #26'},
-    {id:'1UMJyKI3Qb-mOxfK1XNrbDF7Ug9iUzidI',name:'Caja #27'},
-    {id:'1Yg448W0Xa6M_KcJY41pIxU56eCkR1Krj',name:'Caja #28'},
-    {id:'1qY_WrI204ruvAIWd_4A2ES_LTfWM-CdH',name:'Caja #29'},
-    {id:'1cF4tkdC86SSe5U-j99zKMkeTeYsTXGrJ',name:'Caja #30'},
-  ]},
-  {key:'playeras', label:'Playeras Funko', group:'Accesorios', items:[
-    {id:'1_4clcRsOUlnJZxOv00xANU14FiltXH43',name:'Playera #1'},
-    {id:'16_ej462ext8OH1jvDFYFYfC1SliGXQ7f',name:'Playera Thor'},
-    {id:'1r0bUzZczawdC-hjTlhpAHsVPNmJh62TD',name:'Playera Wakanda'},
-    {id:'1M_O_TOp_7Z6M6KReug4T_G0d4Rrt4HhG',name:'Playera Ant-Man'},
-    {id:'10fbBUbI9juOON5_uF6L8X7D9qRlKtC_S',name:'Playera Duende'},
-    {id:'1tIwpPb28IF5ysLeSN8VS9xZcwtAUG-dX',name:'Playera GOT'},
-    {id:'1PBKy3binX0Usrnu5lEQMIM1n7zPWir0z',name:'Playera Black Widow'},
-    {id:'1QtHPD3BSOqWJ_GUAIaTrrD0avysXHDgX',name:'Playera Moana'},
-  ]},
-  {key:'protectores', label:'Protectores Funko', group:'Accesorios', items:[
-    {id:'14WMbkofqrbGQBCrS6xauESoTSma8vpQX',name:'Protector #1'},
-    {id:'1Y5eaUHrDTa0edB9wdBYrhAAJbLX3j5Aq',name:'Protector #2'},
-  ]},
-  {key:'abril', label:'Abril 2026', group:'Novedades', items:[
-    {id:'1PVEfagw-vEEZ6gyFojxDmXZ2H3ZNev8k',name:'Abril #1'},
-    {id:'1W0BmOqbIBI5l3mkZzBZZpEAJmSf_TeGW',name:'Abril #2'},
-    {id:'1UmIum9yws_VVvfHLQpHgI-08EdlDAcDY',name:'Abril #3'},
-    {id:'1YMj6BkQbO69K_K-DPGddc6SoZmn3RKRh',name:'Abril #4'},
-    {id:'1pEnK4kl05M3xnnO3lLrLTJUQ9tYl7Cud',name:'Abril #5'},
-    {id:'1wRd4NDxJZGLCeUiJfhpMG4zTRwTaiX4K',name:'Abril #6'},
-    {id:'11RID0FceYXtbAUy3N94nEgAHZRwIz8OL',name:'Abril #7'},
-    {id:'19pJaprx9m_FQs2KRLGh3lAPDoaBlEAZq',name:'Abril #8'},
-    {id:'1TePLaFTy7To6qK9FmeexJ6alqpTNXc_u',name:'Abril #9'},
-    {id:'1V300m17tEAc88ymlIeVkotcUdPkwxy4V',name:'Abril #10'},
-    {id:'1DS3S8uFjW6Ngy1aABSV5rUl0pl-eHdJ5',name:'Abril #11'},
-    {id:'1C5un372a_UXznVSX-8JTGVVnqgiwDvf4',name:'Abril #12'},
-    {id:'1JZDc3awXTTmQ7Q2uqXivJbF-M75hKTl-',name:'Abril #13'},
-    {id:'1nVXL0PutwfG7BgM7Dxq87WI0qLABH7tw',name:'Abril #14'},
-    {id:'11p4XEEDdDqy7IZZESQFi1U4StkuCYHsU',name:'Abril #15'},
-    {id:'1P6B8oZpD8oRCqC3YXapNVoynsbHFkJsu',name:'Abril #16'},
-    {id:'1FyMzIwUeTh-idPVlQkRHCHYYl0JdDkDo',name:'Abril #17'},
-    {id:'1iKIv24qBUOhHQdXSmaLal0LEbC_51588',name:'Abril #18'},
-    {id:'1h7lKjqeXzymD8UlPAlpqi2_Rp5O_Ycgf',name:'Abril #19'},
-    {id:'1hhl2OmFrxVcGfLti24UJ9zbyu1fDS4cz',name:'Abril #20'},
-    {id:'1aJFWbWBi0Lepefgg26MrxEo6p27Ql5fe',name:'Abril #21'},
-    {id:'1uwCsoyOf8MxPGnnDclrkzcsNY1AAdzn3',name:'Abril #22'},
-    {id:'1SHqSSpthyF_23G7U_6Jjj0cEtvYLvKQO',name:'Abril #23'},
-    {id:'1l2d1lLivLN2jfcnuUb3nODIB3Pds2vlc',name:'Abril #24'},
-    {id:'1G6GXjYh6qZ0YzQibL0T85muTw_rqQABQ',name:'Abril #25'},
-    {id:'1ps7l0v5lHQFpoOxPeUtVd0AmEM58ZOlL',name:'Abril #26'},
-    {id:'14z1D9DwGMTsqPENhKB1ldA09hN0sjXOZ',name:'Abril #27'},
-  ]},
-  {key:'marzo', label:'Marzo 2026', group:'Novedades', items:[
-    {id:'1q78bkhjXHWIB4jOFSPIA7FuAeGqYYPlv',name:'Marzo #1'},
-    {id:'1gefNnzihqYnF0uX6FMTUNPT9OZeJw2rU',name:'Marzo #2'},
-    {id:'1EFgGXOHId0Lzq26rpLt0t-JUlJGYRzDf',name:'Marzo #3'},
-    {id:'1aYuv_ijGuzcsVtLo0ucHUrWCXs8TJaA3',name:'Marzo #4'},
-    {id:'1T6rAjYaxFlG3Yf0DvR3xlZ1oPUaJYTrF',name:'Marzo #5'},
-    {id:'1pPsF6ucUv-UmbgCHogj662butUcfh2lk',name:'Marzo #6'},
-    {id:'1z5dDDPJut0zCrmP9kRFfIQO9rRqOY2eV',name:'Marzo #8'},
-    {id:'1UjC739IGMUTlYawPI2fX7MLkePajoqL7',name:'Marzo #10'},
-    {id:'1fFw0c8Z-Gpj6Fge75i-lPTibHAQBA5eW',name:'Marzo #11'},
-    {id:'13Ff5hkw5gWTKMi6LD8p3dPLhtSU1PQxf',name:'Marzo #12'},
-    {id:'1VdjhgLNST-djIHMncNWDkdXOhq4xH25t',name:'Marzo #13'},
-    {id:'1Im_7k4s8Np6CK6HATFFHqZ_dEQZxOuAZ',name:'Marzo #20'},
-    {id:'132qZix8Axn94f9UsF14k6Vjo5yET-_JL',name:'Marzo especial'},
-    {id:'1ZgHprlBs4weYUe2dsVOCje_HWccXMh2b',name:'Marzo último'},
-  ]},
-  {key:'remates', label:'Remates 🔥', group:'Ofertas', items:[
-    {id:'16MEhS_cs1peGXMd2not4DebuVBV38otz',name:'Remate #1',remate:true},
-    {id:'118HfGbAaW4vD8lOpOQvf1B3aJzl2WWgj',name:'Remate #2',remate:true},
-    {id:'1mr-ecMP2T1HHWi-X0bhqMckxZKMMPy9I',name:'Remate #3',remate:true},
-  ]},
-  {key:'danio', label:'Daño en caja', group:'Ofertas', items:[
-    {id:'1qitjFYQ8LkxC1Md-_7k9wM3KsPomhDZf',name:'Dañado #1',danio:true},
-    {id:'1_VzOPateFhkpxV_4TP3eDvW7B2CS44DL',name:'Dañado #2',danio:true},
-  ]},
-];
+const DRIVE_API_KEY   = 'AIzaSyCk7FnJ19avEXHDJPF4yKT6zJ0pNDfLKQ8';
+const ROOT_FOLDER_ID  = '1EjlWMeQD7u2EwMj8AZdwG39Amudlel2o';
+
+// Mapeo de nombre de carpeta → grupo del menú
+// Agrega aquí carpetas nuevas que vayas creando
+const FOLDER_GROUPS = {
+  'Marvel':            'Anime / Cómics',
+  'DC Comics':         'Anime / Cómics',
+  'Dragón Ball':       'Anime / Cómics',
+  'One Piece':         'Anime / Cómics',
+  'Naruto - Boruto':   'Anime / Cómics',
+  'Attack on Titan':   'Anime / Cómics',
+  'Demon Slayer':      'Anime / Cómics',
+  'My Hero Academia':  'Anime / Cómics',
+  'Yugioh - Digimon':  'Anime / Cómics',
+  'Star Wars':         'Películas / TV',
+  'Disney':            'Películas / TV',
+  'POKEMON':           'Películas / TV',
+  'Cascos':            'Accesorios',
+  'Cajas Funko':       'Accesorios',
+  'Playeras Funko Pop':'Accesorios',
+  'Protectores Funko': 'Accesorios',
+  'Abril':             'Novedades',
+  'Marzo':             'Novedades',
+  'REMATES':           'Ofertas',
+  'Daño en caja':      'Ofertas',
+};
+
+// Carpetas que tienen badge especial
+const FOLDER_FLAGS = {
+  'REMATES':    'remate',
+  'Daño en caja': 'danio',
+};
+
+// ── Catálogo dinámico (se llena desde Drive) ──────────
+let catalog = [];
 
 // ── Build category bar with grouped dropdowns ──────────
 function buildCatBar(){
@@ -795,11 +609,105 @@ function renderGrid(){
   grid.innerHTML = items.map(i=>makeCard(i,i.catLabel)).join('');
 }
 
-function initCatalog(){
+// ── Drive API helpers ─────────────────────────────────
+async function driveList(query, fields='files(id,name,mimeType)', pageToken=''){
+  const params = new URLSearchParams({
+    q: query,
+    fields,
+    pageSize: 1000,
+    key: DRIVE_API_KEY,
+    ...(pageToken ? {pageToken} : {})
+  });
+  const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
+  if(!res.ok) throw new Error(`Drive API error: ${res.status}`);
+  return res.json();
+}
+
+async function fetchAllFiles(folderId){
+  let files=[], token='';
+  do {
+    const data = await driveList(`'${folderId}' in parents and trashed=false`, 'files(id,name,mimeType),nextPageToken', token);
+    files = files.concat(data.files||[]);
+    token = data.nextPageToken||'';
+  } while(token);
+  return files;
+}
+
+// ── Load catalog from Drive ───────────────────────────
+async function loadFromDrive(){
+  // Show loading state
+  document.getElementById('total-count').textContent = '...';
+  document.getElementById('mainGrid').innerHTML =
+    '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:14px">Cargando catálogo...</div>';
+
+  // 1. Get all subfolders of root
+  const rootFiles = await fetchAllFiles(ROOT_FOLDER_ID);
+  const folders   = rootFiles.filter(f=>f.mimeType==='application/vnd.google-apps.folder');
+  const looseImgs = rootFiles.filter(f=>f.mimeType.startsWith('image/'));
+
+  // 2. For each folder, get its images (in parallel)
+  const folderData = await Promise.all(folders.map(async folder => {
+    const files = await fetchAllFiles(folder.id);
+    const images = files.filter(f=>f.mimeType.startsWith('image/'));
+    const flag = FOLDER_FLAGS[folder.name] || null;
+    return {
+      key:   folder.name.toLowerCase().replace(/\W+/g,'_'),
+      label: folder.name,
+      group: FOLDER_GROUPS[folder.name] || 'Otros',
+      items: images.map((img,i)=>({
+        id:     img.id,
+        name:   `${folder.name} #${i+1}`,
+        ...(flag ? {[flag]:true} : {})
+      }))
+    };
+  }));
+
+  // 3. Add loose images (not in a folder) as "Sin categoría"
+  if(looseImgs.length){
+    folderData.push({
+      key:'otros', label:'Sin categoría', group:'Otros',
+      items: looseImgs.map((img,i)=>({id:img.id, name:`Figura #${i+1}`}))
+    });
+  }
+
+  // 4. Filter empty folders and sort: known groups first
+  const groupOrder = ['Anime / Cómics','Películas / TV','Accesorios','Novedades','Ofertas','Otros'];
+  catalog = folderData
+    .filter(c=>c.items.length>0)
+    .sort((a,b)=>groupOrder.indexOf(a.group)-groupOrder.indexOf(b.group));
+
+  // 5. Render
+  rebuildUI();
+}
+
+function rebuildUI(){
   const total = catalog.reduce((s,c)=>s+c.items.length,0);
   document.getElementById('total-count').textContent = total;
+  // Rebuild cat bar (clear first)
+  document.getElementById('catBar').innerHTML='';
+  // Remove old body-level menus
+  document.querySelectorAll('.cat-menu').forEach(m=>m.remove());
   buildCatBar();
   renderGrid();
+}
+
+async function initCatalog(){
+  if(DRIVE_API_KEY && DRIVE_API_KEY !== 'AQUI_TU_API_KEY'){
+    try {
+      await loadFromDrive();
+      return;
+    } catch(err){
+      console.warn('Drive API falló, usando catálogo local:', err.message);
+    }
+  }
+  // Fallback: no API key set yet → show helpful message
+  document.getElementById('mainGrid').innerHTML =
+    `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:14px;line-height:2">
+      Para mostrar el catálogo en vivo, agrega tu Google API Key en el código.<br>
+      <span style="color:var(--accent);font-size:12px">Busca AQUI_TU_API_KEY en el archivo index.html</span>
+    </div>`;
+  document.getElementById('total-count').textContent = '—';
+  buildCatBar();
 }
 
 // ── Page nav ─────────────────────────────────────────
@@ -851,8 +759,8 @@ function openNameModal(figName, catName, imgId){
   } else {
     figuraLabel.style.display='block';
     figuraInput.style.display='block';
-    // Pre-fill with the card name, user can edit it
-    figuraInput.value = figName || '';
+    // Leave empty so the user types what they want
+    figuraInput.value = '';
   }
 
   document.getElementById('nmOverlay').classList.add('open');
