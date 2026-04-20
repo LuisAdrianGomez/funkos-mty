@@ -3,136 +3,411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funkos MTY — Catálogo</title>
+<title>Funkos MTY</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3W973VFDSX"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer=window.dataLayer||[];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3W973VFDSX');
-  function trackFigure(n,c){ gtag('event','ver_figura',{figura:n,categoria:c}); }
-  function trackWA(n,c){ gtag('event','contacto_whatsapp',{figura:n,categoria:c}); }
+  gtag('js',new Date());
+  gtag('config','G-3W973VFDSX');
+  function trackFigure(n,c){gtag('event','ver_figura',{figura:n,categoria:c});}
+  function trackWA(n,c){gtag('event','contacto_whatsapp',{figura:n,categoria:c});}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--bg:#0e0e0e;--surface:#181818;--card:#1f1f1f;--border:rgba(255,255,255,.07);--accent:#f5c518;--accent2:#e8533a;--text:#f0f0f0;--muted:#888;--radius:14px}
-  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0e0e;--surface:#181818;--card:#1c1c1c;--border:rgba(255,255,255,.07);
+  --accent:#f5c518;--accent2:#e8533a;--green:#25d366;
+  --text:#f0f0f0;--muted:#777;--radius:14px;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
 
-  header{position:sticky;top:0;z-index:100;background:rgba(14,14,14,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
-  .logo{display:flex;align-items:baseline;gap:6px}
-  .logo-main{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--accent);line-height:1}
-  .logo-sub{font-size:11px;font-weight:300;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
-  .wa-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;background:#25d366;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:99px;cursor:pointer;white-space:nowrap;transition:opacity .15s}
-  .wa-btn:hover{opacity:.88}
+/* ─── TOP NAV ─────────────────────────────────────────────── */
+.topnav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(14,14,14,.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.25rem;height:60px;gap:.75rem;
+}
+.logo{display:flex;align-items:baseline;gap:5px;text-decoration:none}
+.logo-main{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--accent);line-height:1}
+.logo-sub{font-size:10px;font-weight:300;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
 
-  .hero{padding:2.5rem 1.5rem 1.5rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,8vw,72px);letter-spacing:3px;line-height:.9}
-  .hero-title span{color:var(--accent)}
-  .hero-meta{font-size:13px;color:var(--muted);font-weight:300}
-  .hero-meta strong{color:var(--text);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-link{
+  padding:7px 13px;font-size:13px;font-weight:400;color:var(--muted);
+  background:none;border:none;cursor:pointer;border-radius:8px;
+  transition:color .15s,background .15s;white-space:nowrap;
+}
+.nav-link:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-link.active{color:var(--accent);font-weight:500}
 
-  .tabs-wrapper{position:sticky;top:64px;z-index:90;background:rgba(14,14,14,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .tabs-wrapper::-webkit-scrollbar{display:none}
-  .tab{padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;display:flex;align-items:center;gap:5px}
-  .tab:hover{color:var(--text)}
-  .tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
-  .tab-count{font-size:10px;background:rgba(255,255,255,.08);padding:2px 6px;border-radius:99px;color:var(--muted)}
-  .tab.active .tab-count{background:rgba(245,197,24,.15);color:var(--accent)}
+.nav-wa{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 14px;background:var(--green);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;
+  border:none;border-radius:99px;cursor:pointer;white-space:nowrap;
+  transition:opacity .15s;flex-shrink:0;
+}
+.nav-wa:hover{opacity:.85}
 
-  .section{padding:2rem 1.5rem;display:none}
-  .section.visible{display:block}
-  .section-heading{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--muted);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
-  .section-heading::after{content:'';flex:1;height:1px;background:var(--border)}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  @media(min-width:540px){.grid{grid-template-columns:repeat(3,1fr)}}
-  @media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+/* mobile hamburger */
+.burger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{display:block;width:20px;height:2px;background:var(--muted);border-radius:2px;transition:.2s}
 
-  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s;position:relative}
-  .card:hover{transform:translateY(-3px);border-color:rgba(245,197,24,.25)}
-  .card-img-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;background:#161616}
-  .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .35s;display:block}
-  .card:hover .card-img-wrap img{transform:scale(1.04)}
-  .card-body{padding:10px 12px 12px}
-  .card-name{font-size:12.5px;font-weight:500;color:var(--text);line-height:1.35;margin-bottom:4px}
-  .card-cat{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-  .badge-remate{position:absolute;top:8px;left:8px;background:var(--accent2);color:#fff;font-size:9px;font-weight:500;letter-spacing:1px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
-  .badge-danio{position:absolute;top:8px;left:8px;background:#7b4a00;color:#ffd080;font-size:9px;font-weight:500;letter-spacing:1px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
+@media(max-width:600px){
+  .nav-links{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.98);border-bottom:1px solid var(--border);flex-direction:column;padding:.75rem;gap:2px;z-index:199}
+  .nav-links.open{display:flex}
+  .nav-link{text-align:left;border-radius:8px}
+  .burger{display:flex}
+}
 
-  /* LIGHTBOX */
-  .lightbox{display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:1rem}
-  .lightbox.open{display:flex}
-  .lb-inner{width:100%;max-width:520px;background:var(--surface);border-radius:18px;border:1px solid var(--border);overflow:hidden;animation:popIn .2s ease;display:flex;flex-direction:column;max-height:92vh}
-  @keyframes popIn{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
-  .lb-img-wrap{width:100%;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;max-height:58vh}
-  .lb-img-wrap img{max-width:100%;max-height:58vh;width:auto;height:auto;object-fit:contain;display:block}
-  .lb-body{padding:1.25rem 1.5rem 1.5rem}
-  .lb-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;margin-bottom:4px}
-  .lb-cat{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:1.25rem}
-  .lb-actions{display:flex;gap:10px}
-  .btn-wa{flex:1;padding:11px;background:#25d366;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s}
-  .btn-wa:hover{opacity:.88}
-  .btn-close{padding:11px 16px;background:rgba(255,255,255,.06);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:10px;cursor:pointer}
-  .btn-close:hover{background:rgba(255,255,255,.1)}
+/* ─── PAGES ────────────────────────────────────────────────── */
+.page{display:none}
+.page.active{display:block}
 
-  /* MODAL NOMBRE */
-  .name-modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:1.5rem}
-  .name-modal-overlay.open{display:flex}
-  .name-modal{width:100%;max-width:380px;background:var(--surface);border-radius:18px;border:1px solid rgba(245,197,24,.2);padding:1.75rem;animation:popIn .18s ease}
-  .nm-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--accent);margin-bottom:4px}
-  .nm-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.5}
-  .nm-field{margin-bottom:1rem}
-  .nm-field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px}
-  .nm-field input{width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
-  .nm-field input:focus{border-color:rgba(245,197,24,.4)}
-  .nm-field input::placeholder{color:var(--muted)}
-  .nm-preview{background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(37,211,102,.9);line-height:1.6;margin-bottom:1.25rem;display:none}
-  .nm-preview.visible{display:block}
-  .nm-actions{display:flex;gap:10px}
-  .nm-send{flex:1;padding:11px;background:#25d366;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:7px}
-  .nm-send:hover{opacity:.88}
-  .nm-send:disabled{opacity:.35;cursor:not-allowed}
-  .nm-cancel{padding:11px 14px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:10px;cursor:pointer}
-  .nm-cancel:hover{background:rgba(255,255,255,.05)}
+/* ─── HERO ─────────────────────────────────────────────────── */
+.hero{padding:2.25rem 1.25rem 1.5rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,8vw,70px);letter-spacing:3px;line-height:.9}
+.hero-title span{color:var(--accent)}
+.hero-meta{font-size:13px;color:var(--muted);font-weight:300;line-height:1.7}
+.hero-meta strong{color:var(--text);font-weight:500}
 
-  footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
-  footer p{font-size:13px;color:var(--muted);line-height:1.7}
-  footer a{color:var(--accent);text-decoration:none;cursor:pointer}
-  .all-section-group{margin-bottom:2.5rem}
+/* ─── CATEGORY DROPDOWN BAR ────────────────────────────────── */
+.cat-bar{
+  position:sticky;top:60px;z-index:400;
+  background:rgba(14,14,14,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+  padding:0 1.25rem;
+  display:flex;align-items:center;gap:6px;
+  overflow:visible;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  height:48px;
+  white-space:nowrap;
+  isolation:isolate;
+}
+.cat-bar::-webkit-scrollbar{display:none}
+
+.cat-all-btn{
+  padding:5px 14px;font-size:12px;font-weight:500;
+  background:rgba(245,197,24,.12);color:var(--accent);
+  border:1px solid rgba(245,197,24,.25);border-radius:99px;
+  cursor:pointer;white-space:nowrap;transition:.15s;flex-shrink:0;
+}
+.cat-all-btn.active,.cat-all-btn:hover{background:var(--accent);color:#000}
+
+/* dropdown pill */
+.cat-dropdown{position:relative;flex-shrink:0}
+.cat-pill{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 12px 5px 14px;font-size:12px;font-weight:400;color:var(--muted);
+  background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:99px;
+  cursor:pointer;white-space:nowrap;transition:.15s;
+}
+.cat-pill:hover,.cat-pill.active{color:var(--text);border-color:rgba(255,255,255,.2)}
+.cat-pill.active{color:var(--accent);border-color:rgba(245,197,24,.35);background:rgba(245,197,24,.08)}
+.cat-pill svg{flex-shrink:0;transition:transform .2s}
+.cat-pill.open svg{transform:rotate(180deg)}
+.cat-menu{
+  display:none;position:fixed;
+  background:#222;border:1px solid var(--border);border-radius:12px;
+  padding:6px;min-width:200px;z-index:9999;
+  box-shadow:0 12px 40px rgba(0,0,0,.7);
+}
+.cat-menu.open{display:block}
+.cat-menu-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;font-size:13px;color:var(--muted);border-radius:8px;
+  cursor:pointer;transition:.12s;
+}
+.cat-menu-item:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.cat-menu-item.active{color:var(--accent);background:rgba(245,197,24,.08)}
+.cat-menu-item .cnt{font-size:11px;background:rgba(255,255,255,.08);padding:1px 6px;border-radius:99px}
+
+/* ─── GRID ──────────────────────────────────────────────────── */
+.grid-wrap{padding:1.5rem 1.25rem 3rem;position:relative;z-index:1}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:500px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:860px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
+.card:hover{border-color:rgba(245,197,24,.3);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.card-img{width:100%;aspect-ratio:1/1;overflow:hidden;background:#141414}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .35s;display:block}
+.card:hover .card-img img{transform:scale(1.05)}
+.card-body{padding:9px 11px 11px}
+.card-name{font-size:12px;font-weight:500;color:var(--text);line-height:1.35;margin-bottom:3px}
+.card-cat{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.badge{position:absolute;top:7px;left:7px;font-size:9px;font-weight:600;letter-spacing:.8px;padding:3px 7px;border-radius:4px;text-transform:uppercase}
+.badge-remate{background:var(--accent2);color:#fff}
+.badge-danio{background:#6b3800;color:#ffc46b}
+
+/* ─── LIGHTBOX ──────────────────────────────────────────────── */
+.lb-overlay{display:none;position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.95);align-items:center;justify-content:center;padding:1rem}
+.lb-overlay.open{display:flex}
+.lb-box{width:100%;max-width:500px;background:var(--surface);border-radius:18px;border:1px solid var(--border);overflow:hidden;animation:popIn .2s ease;display:flex;flex-direction:column;max-height:92vh}
+@keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.lb-img-wrap{width:100%;background:#111;display:flex;align-items:center;justify-content:center;max-height:56vh;flex-shrink:0}
+.lb-img-wrap img{max-width:100%;max-height:56vh;width:auto;height:auto;object-fit:contain;display:block}
+.lb-body{padding:1.1rem 1.4rem 1.4rem}
+.lb-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:3px}
+.lb-cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:1.1rem}
+.lb-btns{display:flex;gap:8px}
+.btn-wa{flex:1;padding:10px;background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:10px;cursor:pointer;transition:opacity .15s}
+.btn-wa:hover{opacity:.87}
+.btn-close{padding:10px 14px;background:rgba(255,255,255,.06);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;border:1px solid var(--border);border-radius:10px;cursor:pointer}
+.btn-close:hover{background:rgba(255,255,255,.1)}
+
+/* ─── MODAL NOMBRE ──────────────────────────────────────────── */
+.nm-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);align-items:center;justify-content:center;padding:1.5rem}
+.nm-overlay.open{display:flex}
+.nm-box{width:100%;max-width:370px;background:var(--surface);border-radius:18px;border:1px solid rgba(245,197,24,.2);padding:1.6rem;animation:popIn .18s ease}
+.nm-title{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:2px;color:var(--accent);margin-bottom:3px}
+.nm-sub{font-size:12px;color:var(--muted);margin-bottom:1.3rem;line-height:1.5}
+.nm-label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:5px}
+.nm-input{width:100%;padding:9px 13px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s;margin-bottom:12px}
+.nm-input:focus{border-color:rgba(245,197,24,.4)}
+.nm-input::placeholder{color:var(--muted)}
+.nm-preview{background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:9px;padding:9px 13px;font-size:12px;color:rgba(37,211,102,.9);line-height:1.6;margin-bottom:1.1rem;display:none;word-break:break-word;overflow-wrap:break-word;white-space:pre-wrap}
+.nm-preview.visible{display:block}
+.nm-btns{display:flex;gap:8px}
+.nm-send{flex:1;padding:10px;background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:9px;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.nm-send:hover{opacity:.87}
+.nm-send:disabled{opacity:.32;cursor:not-allowed}
+.nm-cancel{padding:10px 13px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;border:1px solid var(--border);border-radius:9px;cursor:pointer}
+.nm-cancel:hover{background:rgba(255,255,255,.05)}
+
+/* ─── ENTREGA PAGE ──────────────────────────────────────────── */
+.info-page{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.info-page h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,52px);letter-spacing:3px;color:var(--accent);margin-bottom:.4rem}
+.info-page .subtitle{font-size:13px;color:var(--muted);margin-bottom:2.5rem}
+.delivery-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1rem}
+.delivery-card h3{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.5px;color:var(--text);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.delivery-card h3 .icon{font-size:18px}
+.delivery-card p,.delivery-card li{font-size:14px;color:rgba(240,240,240,.8);line-height:1.7}
+.delivery-card ul{padding-left:1.1rem}
+.delivery-card li{margin-bottom:.3rem}
+.delivery-card .highlight{color:var(--accent);font-weight:500}
+.tag{display:inline-block;background:rgba(245,197,24,.1);color:var(--accent);border:1px solid rgba(245,197,24,.2);font-size:11px;padding:2px 9px;border-radius:99px;margin:.2rem .15rem}
+.price-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.price-row:last-child{border-bottom:none}
+.price-row .label{font-size:13px;color:var(--muted)}
+.price-row .val{font-size:13px;font-weight:500;color:var(--text)}
+
+/* ─── PEDIDOS PAGES ─────────────────────────────────────────── */
+.pedidos-page{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
+.pedidos-page h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,6vw,50px);letter-spacing:3px;color:var(--accent);margin-bottom:.3rem}
+.pedidos-page .badge-src{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;margin-bottom:2rem}
+.badge-funko{background:rgba(37,211,102,.12);color:#4ade80;border:1px solid rgba(37,211,102,.25)}
+.badge-pop{background:rgba(245,197,24,.1);color:var(--accent);border:1px solid rgba(245,197,24,.2)}
+.rule-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;margin-bottom:.85rem}
+.rule-block h3{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:.85rem;font-weight:500}
+.rule-item{display:flex;gap:.75rem;margin-bottom:.75rem;font-size:14px;line-height:1.65;color:rgba(240,240,240,.82)}
+.rule-item:last-child{margin-bottom:0}
+.rule-item .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.55rem}
+.rule-item strong{color:var(--text);font-weight:600}
+.rule-item .hl-red{color:#f87171;font-weight:600}
+.rule-item .hl-yellow{background:rgba(245,197,24,.2);color:var(--accent);padding:1px 5px;border-radius:4px;font-weight:600}
+.rule-item .hl-green{color:#4ade80;font-weight:600}
+.alert-box{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:12px;padding:1rem 1.25rem;font-size:13px;color:rgba(248,113,113,.9);line-height:1.65;margin-bottom:1rem}
+.alert-box strong{color:#f87171}
+.note-box{background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.15);border-radius:12px;padding:1rem 1.25rem;font-size:13px;color:rgba(245,197,24,.85);line-height:1.65;margin-bottom:1rem}
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+footer{border-top:1px solid var(--border);padding:1.75rem 1.25rem;text-align:center}
+footer p{font-size:12px;color:var(--muted);line-height:1.8}
+footer a{color:var(--accent);text-decoration:none;cursor:pointer}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">
+<!-- ═══ TOP NAV ═════════════════════════════════════════════ -->
+<nav class="topnav">
+  <a class="logo" href="#" onclick="showPage('catalogo');return false">
     <span class="logo-main">Funkos</span>
     <span class="logo-sub">MTY</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-link active" onclick="showPage('catalogo')">Catálogo</button>
+    <button class="nav-link" onclick="showPage('entrega')">Puntos de entrega</button>
+    <button class="nav-link" onclick="showPage('funkoshop')">Pedidos Funko Shop</button>
+    <button class="nav-link" onclick="showPage('popcultcha')">Pedidos Popcultcha</button>
   </div>
-  <button class="wa-btn" onclick="openNameModal('Catálogo general','General',null)">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    WhatsApp
-  </button>
-</header>
+  <div style="display:flex;align-items:center;gap:8px">
+    <button class="nav-wa" onclick="openNameModal('Catálogo general','General',null)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </button>
+    <button class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-<div class="hero">
-  <div class="hero-title">Catálogo<br><span>Funko Pop</span></div>
-  <div class="hero-meta"><strong id="total-count">—</strong> figuras disponibles<br>Monterrey, NL · Envíos y entrega local</div>
+<!-- ═══ PAGE: CATÁLOGO ═══════════════════════════════════════ -->
+<div class="page active" id="page-catalogo">
+  <div class="hero">
+    <div class="hero-title">Catálogo<br><span>Funko Pop</span></div>
+    <div class="hero-meta"><strong id="total-count">—</strong> figuras disponibles<br>Monterrey, NL · Envíos y entrega local</div>
+  </div>
+
+  <div class="cat-bar" id="catBar"></div>
+  <div class="grid-wrap"><div class="grid" id="mainGrid"></div></div>
 </div>
 
-<div class="tabs-wrapper" id="tabs"></div>
+<!-- ═══ PAGE: PUNTOS DE ENTREGA ═════════════════════════════ -->
+<div class="page" id="page-entrega">
+  <div class="info-page">
+    <h1>Puntos de<br>Entrega</h1>
+    <p class="subtitle">Monterrey y área metropolitana · Envíos a toda la república</p>
 
-<div id="sections"></div>
+    <div class="delivery-card">
+      <h3><span class="icon">📍</span> Entrega entre semana</h3>
+      <p>Puedo entregar <span class="highlight">martes, miércoles y viernes</span> en:</p>
+      <br>
+      <p><strong>Correos — Centro de Monterrey</strong><br>
+      <span style="color:var(--muted);font-size:13px">Atrás del Palacio de Gobierno</span></p>
+      <br>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem">
+        <span class="tag">9:00 a.m – 1:30 p.m</span>
+        <span class="tag">3:30 p.m – 6:45 p.m</span>
+      </div>
+    </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-  <div class="lb-inner">
+    <div class="delivery-card">
+      <h3><span class="icon">🛒</span> Entrega sabatina</h3>
+      <p>Los <span class="highlight">sábados</span> puedo entregar en los siguientes puntos <em style="color:var(--muted)">(horario a definir)</em>:</p>
+      <br>
+      <ul>
+        <li>HEB Hacienda los Morales</li>
+        <li>Mercado la Y</li>
+        <li>Nuevo Sur</li>
+        <li>Walmart La Pastora</li>
+      </ul>
+    </div>
+
+    <div class="delivery-card">
+      <h3><span class="icon">📦</span> Envíos</h3>
+      <div class="price-row">
+        <span class="label">Paquetería local</span>
+        <span class="val highlight">$90 <span style="font-weight:300;color:var(--muted);font-size:12px">(a cotizar)</span></span>
+      </div>
+      <div class="price-row">
+        <span class="label">Paquetería nacional</span>
+        <span class="val">Varias opciones · a cotizar</span>
+      </div>
+      <div class="price-row">
+        <span class="label">Didi / Uber desde punto de entrega</span>
+        <span class="val">Precio a cotizar</span>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center">
+      <button class="nav-wa" style="display:inline-flex;margin:0 auto" onclick="openNameModal('Punto de entrega','Entrega',null)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Coordinar entrega
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: FUNKO SHOP ══════════════════════════════════════ -->
+<div class="page" id="page-funkoshop">
+  <div class="pedidos-page">
+    <h1>Pedidos<br>Funko Shop</h1>
+    <span class="badge-src badge-funko">funko-shop.com · Pops en Stock</span>
+
+    <div class="note-box">
+      <strong>Pops en Stock</strong> — Los pedidos de pops en stock llegan en aproximadamente <strong>2 semanas</strong> una vez metido el pedido.
+    </div>
+
+    <div class="rule-block">
+      <h3>💳 Pago y liquidación</h3>
+      <div class="rule-item"><div class="dot"></div><div>Una vez que llegue el pedido, tendrás <strong class="hl-red">8 días para LIQUIDAR</strong> la deuda. Si no se hace, habrá penalización de que no se entregará el pop que no liquidaste. Si no quieres perder el pop ofrezco otra opción la cual constará de un <strong>cargo extra</strong> (preguntar por esta opción).</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Puedes abonar en lo que llega el pedido o pagarlo por completo desde el principio.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se liquidará <strong class="hl-red">ÚNICAMENTE EN EFECTIVO</strong> cuando te entregue tus pops si la entrega es dentro del plazo (solo aplica si eres de Monterrey).</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se pide un <strong class="hl-yellow">anticipo para poder meter la pieza en el pedido</strong> y lo restante en <strong>efectivo</strong> cuando te entregue tu pop (solo aplica si eres de Monterrey).</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se dará una fecha límite para dar lo del anticipo; si no puedes antes de ese día no podrás entrar al pedido.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Hasta que <strong class="hl-red">TODOS</strong> den lo del anticipo se hace el pedido.</div></div>
+    </div>
+
+    <div class="rule-block">
+      <h3>📦 Stock y entrega</h3>
+      <div class="rule-item"><div class="dot"></div><div>Si el pop que encargaste ya no estuviera en stock se le avisará para un <strong>reemplazo de figura o un reembolso</strong>.</div></div>
+      <div class="rule-item"><div class="dot"></div><div><strong>OJO:</strong> existe la posibilidad de que lleguen con detalle en caja y yo no me puedo hacer responsable de eso ya que no tengo nada que ver con el envío de la tienda a México.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se pueden guardar los pops que ya llegaron <strong class="hl-green">SOLO SI</strong> hay más pops en camino. Si ya no hay nada pendiente se dará un plazo de <strong>1 mes</strong> para programar entrega o envío. Si no se llega a un acuerdo se pondrá en venta para liberar espacio.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Todo el trato es en la conversación personal. Pueden preguntar estatus de su pedido y en una chance se les da respuesta.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Cuando llegue algún pedido se publicará en los grupos y se le enviará mensaje directo al dueño para ver lo de la liquidación.</div></div>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center">
+      <button class="nav-wa" style="display:inline-flex;margin:0 auto" onclick="openNameModal('Pedido Funko Shop','Funko Shop',null)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Entrar al pedido
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: POPCULTCHA ══════════════════════════════════════ -->
+<div class="page" id="page-popcultcha">
+  <div class="pedidos-page">
+    <h1>Pedidos<br>Popcultcha</h1>
+    <span class="badge-src badge-pop">popcultcha.com.au · Australia → México</span>
+
+    <div class="note-box">
+      <strong>Pops en Preventa</strong> — Los pops en preventa se pueden meter en el pedido de la quincena, esos se mandarán después una vez que lleguen a la tienda. Si te metes al detalle de algún pop en preventa, ahí viene la fecha estimada de salida (<em>sujeta a cambio</em>). La preventa se manda aparte o con alguna otra preventa pendiente. La fecha que aparece es cuando le llega a la tienda — hay que agregarle 1 mes o mes y medio que tarda en llegar a México.
+    </div>
+
+    <div class="note-box" style="background:rgba(248,113,113,.06);border-color:rgba(248,113,113,.2);color:rgba(248,113,113,.85)">
+      <strong>OJO:</strong> NO RECOMIENDO hacer preventas a Popcultcha si te urge que el pop llegue en alguna fecha en específico. En caso de alguna cancelación se les avisará a los que entraron en la preventa.
+    </div>
+
+    <div class="rule-block">
+      <h3>📦 Pops en Stock</h3>
+      <div class="rule-item"><div class="dot"></div><div>Los pedidos de pops en stock llegan entre <strong class="hl-yellow">1 mes y 1 mes y medio</strong>.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Una vez que llegue el pedido, tendrás <strong class="hl-red">8 días para LIQUIDAR</strong> la deuda. Si no se hace, habrá penalización de que no se entregará el pop que no liquidaste.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Si no quieres perder el pop ofrezco otra opción la cual constará de un <strong>cargo extra</strong> (preguntar por esta opción). Puedes abonar en lo que llega el pedido o pagarlo por completo desde el principio.</div></div>
+    </div>
+
+    <div class="rule-block">
+      <h3>💳 Pago</h3>
+      <div class="rule-item"><div class="dot"></div><div>Se liquidará <strong class="hl-red">ÚNICAMENTE EN EFECTIVO</strong> cuando te entregue tus pops si la entrega es dentro del plazo (solo aplica si eres de Monterrey).</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se da la <strong class="hl-yellow">mitad de anticipo para entrar al pedido</strong> y la <strong>otra mitad en efectivo</strong> cuando te entregue tu pop (solo aplica si eres de Monterrey).</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se dará una fecha límite para dar lo del anticipo; si no puedes antes de ese día no podrás entrar al pedido.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Hasta que <strong class="hl-red">TODOS</strong> den lo del anticipo se hace el pedido.</div></div>
+    </div>
+
+    <div class="rule-block">
+      <h3>📋 General</h3>
+      <div class="rule-item"><div class="dot"></div><div>Si el pop que encargaste ya no estuviera en stock se le avisará para un <strong>reemplazo o reembolso</strong>.</div></div>
+      <div class="rule-item"><div class="dot"></div><div><strong>OJO:</strong> existe la posibilidad de que lleguen con detalle en caja y yo no me puedo hacer responsable de eso ya que no tengo nada que ver con el envío de Australia a México.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Todo el trato es en la conversación personal. Pueden preguntar estatus de su pedido y en una chance se les da respuesta.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Se pueden guardar los pops que ya llegaron <strong class="hl-green">SOLO SI</strong> hay más pops en camino. Si ya no hay nada pendiente se dará un plazo de <strong>1 mes</strong> para programar entrega o envío. Si no se llega a un acuerdo se pondrá en venta para liberar espacio.</div></div>
+      <div class="rule-item"><div class="dot"></div><div>Cuando llegue algún pedido se publicará en los grupos y se le enviará mensaje directo al dueño para ver lo de la liquidación.</div></div>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:center">
+      <button class="nav-wa" style="display:inline-flex;margin:0 auto" onclick="openNameModal('Pedido Popcultcha','Popcultcha',null)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Entrar al pedido
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIGHTBOX ══════════════════════════════════════════════ -->
+<div class="lb-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lb-box">
     <div class="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
     <div class="lb-body">
       <div class="lb-name" id="lb-name"></div>
       <div class="lb-cat"  id="lb-cat"></div>
-      <div class="lb-actions">
+      <div class="lb-btns">
         <button class="btn-wa" onclick="handleLbWA()">Preguntar por WhatsApp</button>
         <button class="btn-close" onclick="closeLightbox()">Cerrar</button>
       </div>
@@ -140,19 +415,19 @@
   </div>
 </div>
 
-<!-- MODAL NOMBRE -->
-<div class="name-modal-overlay" id="nameModal" onclick="if(event.target===this)closeNameModal()">
-  <div class="name-modal">
+<!-- ═══ MODAL NOMBRE ══════════════════════════════════════════ -->
+<div class="nm-overlay" id="nmOverlay" onclick="if(event.target===this)closeNameModal()">
+  <div class="nm-box">
     <div class="nm-title">¡Un momento!</div>
-    <div class="nm-sub">Ingresa tu nombre para personalizar el mensaje.</div>
-    <div class="nm-field">
-      <label>Nombre y apellido</label>
-      <input type="text" id="nm-input" placeholder="Ej: Juan García" autocomplete="name" oninput="updatePreview()">
-    </div>
+    <div class="nm-sub">Completa los datos para personalizar tu mensaje de WhatsApp.</div>
+    <label class="nm-label">Nombre y apellido</label>
+    <input class="nm-input" type="text" id="nm-input" placeholder="Ej: Juan García" autocomplete="name" oninput="updatePreview()">
+    <label class="nm-label" id="nm-figura-label">Figura de interés</label>
+    <input class="nm-input" type="text" id="nm-figura" placeholder="Ej: Iron Man, DBZ #3..." oninput="updatePreview()">
     <div class="nm-preview" id="nm-preview"></div>
-    <div class="nm-actions">
+    <div class="nm-btns">
       <button class="nm-send" id="nm-send" onclick="sendWA()" disabled>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Abrir WhatsApp
       </button>
       <button class="nm-cancel" onclick="closeNameModal()">Cancelar</button>
@@ -161,24 +436,24 @@
 </div>
 
 <footer>
-  <p>¿Ves algo que te interesa? Escríbeme directamente.<br>
-  <a onclick="openNameModal('Catálogo general','General',null)">WhatsApp</a>
-  · Monterrey, NL · Entregas locales y envíos</p>
+  <p>¿Ves algo que te interesa? <a onclick="openNameModal('Catálogo general','General',null)">Escríbeme por WhatsApp</a><br>
+  Monterrey, NL · Entregas locales y envíos nacionales</p>
 </footer>
 
 <script>
-const WA_NUMBER = '528110408730';
+// ══════════════════════════════════════════════════════
+const WA = '528110408730';
+function thumb(id){ return `https://drive.google.com/thumbnail?id=${id}&sz=w400`; }
+function full(id) { return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`; }
+function driveLink(id){ return `https://drive.google.com/file/d/${id}/view`; }
 
-function driveThumb(id){ return `https://drive.google.com/thumbnail?id=${id}&sz=w400`; }
-function driveFull(id) { return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`; }
+let lbCurrent={}, nmCurrent={};
 
-let lbCurrent = {}, nmCurrent = {};
-
-// ══════════════════════════════════════════════════════════
-//  CATÁLOGO COMPLETO — todas las carpetas de Drive
-// ══════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+//  CATÁLOGO COMPLETO
+// ══════════════════════════════════════════════════════
 const catalog = [
-  { key:'marvel', label:'Marvel', items:[
+  {key:'marvel', label:'Marvel', group:'Anime / Cómics', items:[
     {id:'1V73tf-1MnSLgZ6G-vjIdLfh7JPItZslQ',name:'Marv #1'},
     {id:'1sL4wwpJx_PQKghri5oH9mOvqXv4xoemm',name:'Marv #2'},
     {id:'1i2cr5VpnvGayMtV-iT1j4emgRajCQw7z',name:'Marv #3'},
@@ -205,14 +480,14 @@ const catalog = [
     {id:'1xXdQHXCF2JL9v8our2nAkKGbhCqIiovA',name:'Marv #25'},
     {id:'1giHBCGMLRTs_q6IF7HXGOeFfN646awR4',name:'Casco Marvel'},
   ]},
-  { key:'dc', label:'DC Comics', items:[
+  {key:'dc', label:'DC Comics', group:'Anime / Cómics', items:[
     {id:'1XeoVfRZ7_IB2dzZzVO5JcqDkj3pDhTNe',name:'DC #1'},
     {id:'17lZET5geWszKA2Ek9ifq2iBDmPczy9gk',name:'DC #2'},
     {id:'1qX-JneUjZX6zoGkGFCsnUvdOJQY1-9O1',name:'DC #3'},
     {id:'1Vg2irU9XDueZctzI85EnX_yM1KC3txGe',name:'DC #4'},
     {id:'1sdqNi8uixjbyPFHLcBrk2yBjEVzXUcY3',name:'DC #5'},
   ]},
-  { key:'dbz', label:'Dragon Ball', items:[
+  {key:'dbz', label:'Dragon Ball', group:'Anime / Cómics', items:[
     {id:'1tYthP88r-KqM_3Bz9JENqD3jDeFsmG1x',name:'DBZ #1'},
     {id:'1SpWPR9EhpISXL0Q-u_LRVttAHCdTIcIR',name:'DBZ #2'},
     {id:'1mMAYfMD1ffGKszLFCIM9aoXLISgsHBlp',name:'DBZ #3'},
@@ -221,7 +496,7 @@ const catalog = [
     {id:'1z8U_SQ_3JIp3BJC1-3nbpbUARwBr8cBJ',name:'DBZ #7'},
     {id:'1h64RpsMRgiZhD1Nf8EI6uEEVJObnHY4Z',name:'DBZ #8'},
   ]},
-  { key:'onepiece', label:'One Piece', items:[
+  {key:'onepiece', label:'One Piece', group:'Anime / Cómics', items:[
     {id:'1OJcEF8voMpiBfjwQVh9t98HH_fyJ_1Dh',name:'OP #1'},
     {id:'13BzcIQ5T92e-6HNlTzxLNfTerbQt5qXU',name:'OP #2'},
     {id:'1xANwjDt6sZ2F9MM8EzoO3BXzVdhJKpNY',name:'OP #3'},
@@ -238,7 +513,7 @@ const catalog = [
     {id:'1s4KLN9NWPwmjikuQoZ7VOLb2MAPz2oYZ',name:'OP #14'},
     {id:'1qXHqq1ZDWbykQx4Ie-tnHi7Eb4sAkAuo',name:'OP #15'},
   ]},
-  { key:'naruto', label:'Naruto / Boruto', items:[
+  {key:'naruto', label:'Naruto / Boruto', group:'Anime / Cómics', items:[
     {id:'1SR3BYfbm6QMT3HoC8ySCvkYashzDJiQl',name:'Nar #1'},
     {id:'1CPxmNiav127L6rop31l5t3eeCQfSvxE-',name:'Nar #2'},
     {id:'1qMMlM67YPvIbzjhUKSu6poBOKKbh3jPP',name:'Nar #3'},
@@ -248,52 +523,106 @@ const catalog = [
     {id:'1BX-7gF-sh5s-KsF1-ynye3R_aDpzsp4m',name:'Nar especial #2'},
     {id:'1lLw5JEP4rCOlGCMckCeMyA03fgqGPdsd',name:'Nar especial #3'},
   ]},
-  { key:'aot', label:'Attack on Titan', items:[
+  {key:'aot', label:'Attack on Titan', group:'Anime / Cómics', items:[
     {id:'1X6p6-0bQg0CkuZGd75E64yDZplBs5RBy',name:'AOT #1'},
     {id:'1kRqBw2ekVNXyToBg6scQ-rTbC8TeYlbq',name:'AOT #2'},
     {id:'1XP7bRYoi2Plu-lV5VLTqF977m72JBOw1',name:'AOT #3'},
     {id:'1UY1yaQ-oxFve5ribmwpZ8U3Duyunt9Pv',name:'AOT #4'},
     {id:'1n693VzMh_uA9vydQbJxu6Fke7kqoyIP6',name:'AOT #5'},
   ]},
-  { key:'demonslayer', label:'Demon Slayer', items:[
+  {key:'demonslayer', label:'Demon Slayer', group:'Anime / Cómics', items:[
     {id:'1TiUFN0DoU3cxgVSDF1y8RlC52STMTv1Q',name:'DS #1'},
     {id:'1rRBovHOEWHSIf_XgFoKgCxmms7Bp7sdK',name:'DS #2'},
     {id:'15jcV7xU45XEVNY6K4GWzcZb6IOG8fXJ_',name:'DS #3'},
     {id:'13ryi7QJFyuaHHDKvfdv9IigJqHJ1SJiv',name:'DS #4'},
   ]},
-  { key:'mha', label:'My Hero Academia', items:[
+  {key:'mha', label:'My Hero Academia', group:'Anime / Cómics', items:[
     {id:'1xB1VFC_i8_5ZJ_q814vqPrijWLDPCsKt',name:'MHA #1'},
     {id:'1VnVHVVaEh-fd0AyD60xxHjK8ZO0pQ3Jv',name:'MHA #2'},
     {id:'12tbHmgfAHpD8nk3-5UnfpD7gDg88qDnl',name:'MHA #3'},
     {id:'1FJOQC_rdgjrrqG8y9-mVflPsFDX6RuWp',name:'MHA #4'},
   ]},
-  { key:'starwars', label:'Star Wars', items:[
-    {id:'15o9W0l7rcvZqzv9Sf4PE-xV8ve1DF_a-',name:'SW #101'},
-    {id:'1He1fheEPKu7db_-rCyVXTZQiSA7Q5dHM',name:'SW #102'},
-    {id:'1nPPMcO5kWnlr6eY5Q4bYcbr8g0tHDj9S',name:'SW #103'},
-    {id:'1dxZLXG0ItkKHMVFuM6iR7LT15VgZRdrF',name:'SW #104'},
-    {id:'1pGZqI01T9NyYtIyRwhRLbreR6dSPXOSQ',name:'SW #105'},
-    {id:'1aJLXGEB1z56R6H6WQ-jpkBx081Ssf7YV',name:'SW #106'},
-    {id:'1iBvPxZvhsA0PX3vox2pAmzmK5jlKNEoR',name:'SW #107'},
-    {id:'1qTkiVz9XnhNd9tqlwiqV1JzXLTt7maEr',name:'SW especial'},
-  ]},
-  { key:'disney', label:'Disney', items:[
-    {id:'1aALEQjPecICBL9NWg8QUlyo2lMbhfsQf',name:'Disney #1'},
-    {id:'1wt80AibDwqLsGWKuSDR5YB3gKfwxFVHw',name:'Disney #2'},
-  ]},
-  { key:'pokemon', label:'Pokémon', items:[
-    {id:'1NgyNCIt2wXttazn_fYV71nFbM-bZbrB4',name:'POK #1'},
-    {id:'10nSHhOlQ3b8a_T5k-PwPJ60sh4niWhLs',name:'POK #2'},
-    {id:'1O8qENM958ps93j6aLBvDKKjr1-gP_EN_',name:'POK #3'},
-  ]},
-  { key:'yugioh', label:'Yugi-Oh / Digimon', items:[
+  {key:'yugioh', label:'Yugi-Oh / Digimon', group:'Anime / Cómics', items:[
     {id:'1DMU8q7tMfqHzX_xhDOTcSm87-aTXwms7',name:'Yugi #1'},
     {id:'1quao9mOtwhYxnF7bfdPaSLiWB3n7jkAK',name:'Yugi #2'},
     {id:'1SEufXqN2kgFP3ZXdw47ubr_k1UW_Aow9',name:'Yugi #3'},
     {id:'1A-H0Ry7FIWzwptQ9lyGG-YPeAfD9Dr4r',name:'Yugi #4'},
     {id:'18N4XgyrdUVdhv0HvGknUziAQihLz6XsU',name:'Digimon #1'},
   ]},
-  { key:'abril', label:'Abril 2026', items:[
+  {key:'starwars', label:'Star Wars', group:'Películas / TV', items:[
+    // ID actualizado al más reciente (creado hoy 19-abr-2026)
+    {id:'1P2hNRFJ_4BMcGErE4yffcJEwbyL6Ly0r',name:'SW #101'},
+    {id:'1He1fheEPKu7db_-rCyVXTZQiSA7Q5dHM',name:'SW #102'},
+    {id:'1nPPMcO5kWnlr6eY5Q4bYcbr8g0tHDj9S',name:'SW #103'},
+    {id:'1dxZLXG0ItkKHMVFuM6iR7LT15VgZRdrF',name:'SW #104'},
+    {id:'1pGZqI01T9NyYtIyRwhRLbreR6dSPXOSQ',name:'SW #105'},
+    // 106 actualizado
+    {id:'1_g--GFy2MGEoudlX4Je2CTQjhEE8YTBG',name:'SW #106'},
+    {id:'1iBvPxZvhsA0PX3vox2pAmzmK5jlKNEoR',name:'SW #107'},
+    {id:'1qTkiVz9XnhNd9tqlwiqV1JzXLTt7maEr',name:'SW especial'},
+  ]},
+  {key:'disney', label:'Disney', group:'Películas / TV', items:[
+    {id:'1aALEQjPecICBL9NWg8QUlyo2lMbhfsQf',name:'Disney #1'},
+    {id:'1wt80AibDwqLsGWKuSDR5YB3gKfwxFVHw',name:'Disney #2'},
+  ]},
+  {key:'pokemon', label:'Pokémon', group:'Películas / TV', items:[
+    {id:'1NgyNCIt2wXttazn_fYV71nFbM-bZbrB4',name:'POK #1'},
+    {id:'10nSHhOlQ3b8a_T5k-PwPJ60sh4niWhLs',name:'POK #2'},
+    {id:'1O8qENM958ps93j6aLBvDKKjr1-gP_EN_',name:'POK #3'},
+  ]},
+  {key:'cascos', label:'Cascos', group:'Accesorios', items:[
+    {id:'1VWT5gNBWRc1LNFCHyASaC2hVTTfD0h7r',name:'Casco #1'},
+    {id:'1rjHuDz33QQ8vPzf2xfSZewf8WT41lFBt',name:'Casco #2'},
+    {id:'1zasrfrFoE8u7nD3y0DVuBn558Zum_z4A',name:'Casco #3'},
+    {id:'1yhhu7qUUuiFjYscp4kZYGbVsBfvek9hV',name:'Casco #4'},
+  ]},
+  {key:'cajas', label:'Cajas Funko', group:'Accesorios', items:[
+    {id:'1sztBNj8WcoDeg4uEjM2GxL0zsIAPrmgh',name:'Caja #1'},
+    {id:'1JnAfDHG4lXP4RetK7aH_DTet7vzuqBtW',name:'Caja #2'},
+    {id:'1lcweuGuXYZd9wxyayrizar7cBOZ0yYe6',name:'Caja #3'},
+    {id:'1v9Mo9RevcRfHAl0clKBGG-ja1MvVOmfM',name:'Caja #4'},
+    {id:'1Axdyjiwb7LZWpaQ0g-1QZxSnmLHNPoBf',name:'Caja #5'},
+    {id:'1EuxUqXjeosF3kwPEsSRGK9SdMFnnkM-e',name:'Caja #6'},
+    {id:'1v3E8wdmxdurDHd1n3mrlcylg2zwLAhAV',name:'Caja #7'},
+    {id:'1VJbZFtRpxO-6got8Xc2KhuCxd9L_ayk4',name:'Caja #8'},
+    {id:'1NjiArAKZTnftcGw9JA6M46C63y4JpIX-',name:'Caja #9'},
+    {id:'17Q9hC-dU12PVL4odCj6I1ZzbefFPxMEn',name:'Caja #10'},
+    {id:'1ZUsTjwkklJMZ1wRwfhGs03OyJc6fYZ8L',name:'Caja #11'},
+    {id:'1N1N0gaN-9CAniObFF6uzT73KdJYhx88A',name:'Caja #12'},
+    {id:'1Q8ZcEkNOfs8i44eR9eA8QUselkL3Rnjx',name:'Caja #13'},
+    {id:'1D6CWwY6znktvJ6uLzoGWNfCTgzBl8vpI',name:'Caja #14'},
+    {id:'1nXNhXPwlffcyS7swCXKduMy_UKCBLE2v',name:'Caja #15'},
+    {id:'1ycPjvNux9Io1Cb2GNEAyt1HSbk0ik_DJ',name:'Caja #16'},
+    {id:'1D6KM4bTwjHmUz7t2XJbvZlNMWCqP_eXY',name:'Caja #17'},
+    {id:'1FPYYc5aKAJktEqEP8k2aXJoOAR--jIps',name:'Caja #18'},
+    {id:'1SNGLn-FLADekqZhOSRO3l5lCZPEXQOLO',name:'Caja #19'},
+    {id:'1ADRPw7ykVhJej9ZLaAgVwJWqIohZ5VKE',name:'Caja #20'},
+    {id:'14_gF6UBWoWsCcp71alEAA0tpDNHSCsGn',name:'Caja #21'},
+    {id:'1sFgj_lid5AOsi6O8fUnFpVvntCIsYjP2',name:'Caja #22'},
+    {id:'1j89uiPA98CRXSK0TcnXbsAG3dxqdY7gu',name:'Caja #23'},
+    {id:'1b9cuCFpoeElFmVUu5EjK_ornzDw25nrL',name:'Caja #24'},
+    {id:'1uVoCADjkqEoLxM2f2P-rONOBJhKrsZWT',name:'Caja #25'},
+    {id:'1IZuxJvTCoZDVaqkBAL6cZl_920TxDsJp',name:'Caja #26'},
+    {id:'1UMJyKI3Qb-mOxfK1XNrbDF7Ug9iUzidI',name:'Caja #27'},
+    {id:'1Yg448W0Xa6M_KcJY41pIxU56eCkR1Krj',name:'Caja #28'},
+    {id:'1qY_WrI204ruvAIWd_4A2ES_LTfWM-CdH',name:'Caja #29'},
+    {id:'1cF4tkdC86SSe5U-j99zKMkeTeYsTXGrJ',name:'Caja #30'},
+  ]},
+  {key:'playeras', label:'Playeras Funko', group:'Accesorios', items:[
+    {id:'1_4clcRsOUlnJZxOv00xANU14FiltXH43',name:'Playera #1'},
+    {id:'16_ej462ext8OH1jvDFYFYfC1SliGXQ7f',name:'Playera Thor'},
+    {id:'1r0bUzZczawdC-hjTlhpAHsVPNmJh62TD',name:'Playera Wakanda'},
+    {id:'1M_O_TOp_7Z6M6KReug4T_G0d4Rrt4HhG',name:'Playera Ant-Man'},
+    {id:'10fbBUbI9juOON5_uF6L8X7D9qRlKtC_S',name:'Playera Duende'},
+    {id:'1tIwpPb28IF5ysLeSN8VS9xZcwtAUG-dX',name:'Playera GOT'},
+    {id:'1PBKy3binX0Usrnu5lEQMIM1n7zPWir0z',name:'Playera Black Widow'},
+    {id:'1QtHPD3BSOqWJ_GUAIaTrrD0avysXHDgX',name:'Playera Moana'},
+  ]},
+  {key:'protectores', label:'Protectores Funko', group:'Accesorios', items:[
+    {id:'14WMbkofqrbGQBCrS6xauESoTSma8vpQX',name:'Protector #1'},
+    {id:'1Y5eaUHrDTa0edB9wdBYrhAAJbLX3j5Aq',name:'Protector #2'},
+  ]},
+  {key:'abril', label:'Abril 2026', group:'Novedades', items:[
     {id:'1PVEfagw-vEEZ6gyFojxDmXZ2H3ZNev8k',name:'Abril #1'},
     {id:'1W0BmOqbIBI5l3mkZzBZZpEAJmSf_TeGW',name:'Abril #2'},
     {id:'1UmIum9yws_VVvfHLQpHgI-08EdlDAcDY',name:'Abril #3'},
@@ -322,7 +651,7 @@ const catalog = [
     {id:'1ps7l0v5lHQFpoOxPeUtVd0AmEM58ZOlL',name:'Abril #26'},
     {id:'14z1D9DwGMTsqPENhKB1ldA09hN0sjXOZ',name:'Abril #27'},
   ]},
-  { key:'marzo', label:'Marzo 2026', items:[
+  {key:'marzo', label:'Marzo 2026', group:'Novedades', items:[
     {id:'1q78bkhjXHWIB4jOFSPIA7FuAeGqYYPlv',name:'Marzo #1'},
     {id:'1gefNnzihqYnF0uX6FMTUNPT9OZeJw2rU',name:'Marzo #2'},
     {id:'1EFgGXOHId0Lzq26rpLt0t-JUlJGYRzDf',name:'Marzo #3'},
@@ -336,98 +665,200 @@ const catalog = [
     {id:'1VdjhgLNST-djIHMncNWDkdXOhq4xH25t',name:'Marzo #13'},
     {id:'1Im_7k4s8Np6CK6HATFFHqZ_dEQZxOuAZ',name:'Marzo #20'},
     {id:'132qZix8Axn94f9UsF14k6Vjo5yET-_JL',name:'Marzo especial'},
-    {id:'1ZgHprlBs4weYUe2dsVOCje_HWccXMh2b',name:'Marzo #last'},
+    {id:'1ZgHprlBs4weYUe2dsVOCje_HWccXMh2b',name:'Marzo último'},
   ]},
-  { key:'remates', label:'Remates 🔥', items:[
+  {key:'remates', label:'Remates 🔥', group:'Ofertas', items:[
     {id:'16MEhS_cs1peGXMd2not4DebuVBV38otz',name:'Remate #1',remate:true},
     {id:'118HfGbAaW4vD8lOpOQvf1B3aJzl2WWgj',name:'Remate #2',remate:true},
     {id:'1mr-ecMP2T1HHWi-X0bhqMckxZKMMPy9I',name:'Remate #3',remate:true},
   ]},
-  { key:'danio', label:'Daño en caja', items:[
+  {key:'danio', label:'Daño en caja', group:'Ofertas', items:[
     {id:'1qitjFYQ8LkxC1Md-_7k9wM3KsPomhDZf',name:'Dañado #1',danio:true},
     {id:'1_VzOPateFhkpxV_4TP3eDvW7B2CS44DL',name:'Dañado #2',danio:true},
   ]},
-  { key:'protectores', label:'Protectores Funko', items:[
-    {id:'14WMbkofqrbGQBCrS6xauESoTSma8vpQX',name:'Protector #1'},
-    {id:'1Y5eaUHrDTa0edB9wdBYrhAAJbLX3j5Aq',name:'Protector #2'},
-  ]},
 ];
 
-// ── RENDER ─────────────────────────────────────────────────
+// ── Build category bar with grouped dropdowns ──────────
+function buildCatBar(){
+  const bar = document.getElementById('catBar');
+  // "Todos" pill
+  bar.innerHTML = `<button class="cat-all-btn active" onclick="filterCat(null,this)">Todos</button>`;
+
+  // Group categories
+  const groups = {};
+  catalog.forEach(cat=>{
+    const g = cat.group||'Otros';
+    if(!groups[g]) groups[g]=[];
+    groups[g].push(cat);
+  });
+
+  Object.entries(groups).forEach(([groupName, cats])=>{
+    const uid = 'dd_'+groupName.replace(/\W/g,'');
+
+    // Pill stays inside cat-bar
+    const pillWrap = document.createElement('div');
+    pillWrap.className = 'cat-dropdown';
+    pillWrap.id = uid;
+    pillWrap.innerHTML = `<div class="cat-pill" onclick="toggleDropdown('${uid}')">${groupName}<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg></div>`;
+    bar.appendChild(pillWrap);
+
+    // Menu appended to body — escapes backdrop-filter stacking context completely
+    const menu = document.createElement('div');
+    menu.className = 'cat-menu';
+    menu.id = 'menu_'+uid;
+    cats.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'cat-menu-item';
+      item.dataset.key = c.key;
+      item.innerHTML = `${c.label}<span class="cnt">${c.items.length}</span>`;
+      item.onclick = () => filterCat(c.key, item);
+      menu.appendChild(item);
+    });
+    document.body.appendChild(menu);
+  });
+}
+
+let openDropdown = null;
+function toggleDropdown(uid){
+  const pill = document.querySelector(`#${uid} .cat-pill`);
+  const menu = document.getElementById('menu_'+uid);
+
+  // Close any other open dropdown first
+  if(openDropdown && openDropdown !== uid){
+    const op = document.querySelector(`#${openDropdown} .cat-pill`);
+    const om = document.getElementById('menu_'+openDropdown);
+    op.classList.remove('open'); om.classList.remove('open');
+  }
+
+  pill.classList.toggle('open');
+  const isOpening = pill.classList.contains('open');
+
+  if(isOpening){
+    // Position with fixed coords so it floats above everything
+    const rect = pill.getBoundingClientRect();
+    menu.style.top  = (rect.bottom + 6) + 'px';
+    menu.style.left = rect.left + 'px';
+    menu.classList.add('open');
+    openDropdown = uid;
+  } else {
+    menu.classList.remove('open');
+    openDropdown = null;
+  }
+}
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.cat-dropdown')){
+    document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('open'));
+    document.querySelectorAll('.cat-menu').forEach(m=>m.classList.remove('open'));
+    openDropdown = null;
+  }
+});
+
+let currentCat = null;
+function filterCat(key, el){
+  currentCat = key;
+  // clear active states
+  document.querySelectorAll('.cat-all-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.cat-menu-item').forEach(i=>i.classList.remove('active'));
+  document.querySelectorAll('.cat-pill').forEach(p=>{p.classList.remove('active','open');});
+  document.querySelectorAll('.cat-menu').forEach(m=>m.classList.remove('open'));
+  openDropdown = null;
+
+  if(!key){
+    document.querySelector('.cat-all-btn').classList.add('active');
+  } else {
+    el.classList.add('active');
+    // mark parent pill active too
+    const parentDd = el.closest('.cat-dropdown');
+    if(parentDd) parentDd.querySelector('.cat-pill').classList.add('active');
+  }
+  renderGrid();
+}
+
+// ── Build & render grid ──────────────────────────────
 function makeCard(item, catLabel){
   const n=item.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   const c=catLabel.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-  const badge = item.remate
-    ? '<span class="badge-remate">Remate</span>'
-    : item.danio
-    ? '<span class="badge-danio">Daño en caja</span>'
-    : '';
+  const badge = item.remate?'<span class="badge badge-remate">Remate</span>':
+                item.danio?'<span class="badge badge-danio">Daño caja</span>':'';
   return `<div class="card" onclick="openLightbox('${item.id}','${n}','${c}')">
     ${badge}
-    <div class="card-img-wrap"><img src="${driveThumb(item.id)}" alt="${item.name}" loading="lazy"></div>
+    <div class="card-img"><img src="${thumb(item.id)}" alt="${item.name}" loading="lazy"></div>
     <div class="card-body"><div class="card-name">${item.name}</div><div class="card-cat">${catLabel}</div></div>
   </div>`;
 }
 
-function buildAll(){
-  const tabsEl = document.getElementById('tabs');
-  const secEl  = document.getElementById('sections');
-  let total=0, allHtml='';
-
-  // Tab "Todos"
-  tabsEl.innerHTML = `<button class="tab active" data-target="all">Todos <span class="tab-count" id="cnt-all">—</span></button>`;
-  secEl.innerHTML  = `<div id="sec-all" class="section visible"></div>`;
-
-  catalog.forEach(cat => {
-    total += cat.items.length;
-    // Tab
-    tabsEl.innerHTML += `<button class="tab" data-target="${cat.key}">${cat.label} <span class="tab-count" id="cnt-${cat.key}">—</span></button>`;
-    // Section
-    const cards = cat.items.map(i=>makeCard(i,cat.label)).join('');
-    secEl.innerHTML += `<div id="sec-${cat.key}" class="section"><div class="grid">${cards}</div></div>`;
-    document.getElementById(`cnt-${cat.key}`).textContent = cat.items.length;
-    allHtml += `<div class="all-section-group"><div class="section-heading">${cat.label}</div><div class="grid">${cards}</div></div>`;
-  });
-
-  document.getElementById('sec-all').innerHTML = allHtml;
-  document.getElementById('cnt-all').textContent = total;
-  document.getElementById('total-count').textContent = total;
-
-  // Bind tabs
-  document.querySelectorAll('.tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
-      tab.classList.add('active');
-      document.getElementById('sec-'+tab.dataset.target).classList.add('visible');
-      window.scrollTo({top:0,behavior:'smooth'});
-      if(typeof gtag!=='undefined') gtag('event','ver_categoria',{categoria:tab.dataset.target});
-    });
-  });
+function renderGrid(){
+  const grid = document.getElementById('mainGrid');
+  const items = currentCat
+    ? catalog.filter(c=>c.key===currentCat).flatMap(c=>c.items.map(i=>({...i,catLabel:c.label})))
+    : catalog.flatMap(c=>c.items.map(i=>({...i,catLabel:c.label})));
+  grid.innerHTML = items.map(i=>makeCard(i,i.catLabel)).join('');
 }
 
-// ── LIGHTBOX ───────────────────────────────────────────────
-function openLightbox(imgId,name,cat){
+function initCatalog(){
+  const total = catalog.reduce((s,c)=>s+c.items.length,0);
+  document.getElementById('total-count').textContent = total;
+  buildCatBar();
+  renderGrid();
+}
+
+// ── Page nav ─────────────────────────────────────────
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>{
+    if(l.textContent.toLowerCase().includes(id==='catalogo'?'catálogo':id==='entrega'?'entrega':id==='funkoshop'?'funko':id==='popcultcha'?'popculch':'')) l.classList.add('active');
+  });
+  // close mobile menu
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo({top:0});
+  if(typeof gtag!=='undefined') gtag('event','page_view',{page:id});
+}
+
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ── Lightbox ─────────────────────────────────────────
+function openLightbox(imgId, name, cat){
   lbCurrent={imgId,name,cat};
-  document.getElementById('lb-img').src=driveFull(imgId);
+  document.getElementById('lb-img').src=full(imgId);
   document.getElementById('lb-name').textContent=name;
   document.getElementById('lb-cat').textContent=cat;
   document.getElementById('lightbox').classList.add('open');
   if(typeof trackFigure!=='undefined') trackFigure(name,cat);
 }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
-function handleLbWA(){ openNameModal(lbCurrent.name,lbCurrent.cat,driveFull(lbCurrent.imgId)); }
+function handleLbWA(){ openNameModal(lbCurrent.name, lbCurrent.cat, lbCurrent.imgId); }
 
-// ── MODAL NOMBRE ───────────────────────────────────────────
-function openNameModal(figName,catName,imgUrl){
-  nmCurrent={figName,catName,imgUrl};
+// ── Name modal ───────────────────────────────────────
+function openNameModal(figName, catName, imgId){
+  nmCurrent={figName, catName, imgId};
   document.getElementById('nm-input').value='';
   document.getElementById('nm-preview').classList.remove('visible');
   document.getElementById('nm-send').disabled=true;
-  document.getElementById('nameModal').classList.add('open');
+
+  // Pre-fill figura field if we already know which figure it is
+  const figuraInput = document.getElementById('nm-figura');
+  const figuraLabel = document.getElementById('nm-figura-label');
+  const isGeneral = ['General','Entrega','Funko Shop','Popcultcha'].includes(catName);
+  if(isGeneral){
+    // Hide figura field for non-catalog contexts
+    figuraLabel.style.display='none';
+    figuraInput.style.display='none';
+    figuraInput.value='';
+  } else {
+    figuraLabel.style.display='block';
+    figuraInput.style.display='block';
+    // Pre-fill with the card name, user can edit it
+    figuraInput.value = figName || '';
+  }
+
+  document.getElementById('nmOverlay').classList.add('open');
   setTimeout(()=>document.getElementById('nm-input').focus(),150);
 }
-function closeNameModal(){ document.getElementById('nameModal').classList.remove('open'); }
+function closeNameModal(){ document.getElementById('nmOverlay').classList.remove('open'); }
 
 function updatePreview(){
   const nombre=document.getElementById('nm-input').value.trim();
@@ -440,28 +871,43 @@ function updatePreview(){
 }
 
 function buildMsg(nombre){
-  const{figName,catName}=nmCurrent;
-  if(catName==='General')
-    return `Hola, soy ${nombre} y estoy interesado en tu catálogo de Funkos. ¿Me puedes dar más información?`;
-  return `Hola, soy ${nombre} y estoy interesado en la figura: ${figName} (${catName}). ¿Está disponible?`;
+  const{catName,imgId}=nmCurrent;
+  const figuraInput = document.getElementById('nm-figura');
+  const figura = figuraInput && figuraInput.style.display!=='none'
+    ? figuraInput.value.trim()
+    : '';
+
+  if(catName==='General'||catName==='Entrega')
+    return `Hola, soy ${nombre} y estoy interesado en tus Funkos. ¿Me puedes dar más información?`;
+  if(catName==='Funko Shop')
+    return `Hola, soy ${nombre} y me quiero meter a un pedido de Funko Shop. ¿Me das más información?`;
+  if(catName==='Popcultcha')
+    return `Hola, soy ${nombre} y me quiero meter a un pedido de Popcultcha. ¿Me das más información?`;
+
+  const figText = figura || nmCurrent.figName || '';
+  const link = imgId ? ` — Ver foto: ${driveLink(imgId)}` : '';
+  return `Hola, soy ${nombre} y estoy interesado en la figura: ${figText} (${catName}).${link} ¿Está disponible?`;
 }
 
 function sendWA(){
   const nombre=document.getElementById('nm-input').value.trim();
   if(!nombre)return;
-  if(typeof trackWA!=='undefined') trackWA(nmCurrent.figName,nmCurrent.catName);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMsg(nombre))}`,'_blank');
+  if(typeof trackWA!=='undefined') trackWA(nmCurrent.figName, nmCurrent.catName);
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(buildMsg(nombre))}`,'_blank');
   closeNameModal();
 }
 
 document.getElementById('nm-input').addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!document.getElementById('nm-send').disabled) sendWA();
 });
+document.getElementById('nm-figura').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!document.getElementById('nm-send').disabled) sendWA();
+});
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeLightbox();closeNameModal();}
 });
 
-buildAll();
+initCatalog();
 </script>
 </body>
 </html>
